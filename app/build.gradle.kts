@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.bionicboarder"
+    namespace = "net.bobacktech.bionicboarder"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.bionicboarder"
+        applicationId = "net.bobacktech.bionicboarder"
         minSdk = 34
         targetSdk = 34
         versionCode = 1
