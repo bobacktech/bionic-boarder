@@ -42,7 +42,5 @@ dependencies {
     implementation(libs.material)
     implementation(libs.kotlin.logging)
     implementation(libs.koin)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
