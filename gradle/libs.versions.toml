@@ -8,7 +8,10 @@ material = "1.10.0"
 kotlin-logging = "7.0.0"
 koin = "4.0.1"
 junit5 = "5.11.2"
-android-junit5-plugin = "1.11.2.0" # Version for the JUnit 5 Gradle plugin
+android-junit5-plugin = "1.11.2.0"
+mockk = "1.13.14"
+mockk-android = "1.13.14"
+mockk-agent = "1.13.14"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -16,10 +19,14 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 kotlin-logging = { group = "io.github.oshai", name = "kotlin-logging-jvm", version.ref = "kotlin-logging" }
-koin = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" } # Added Koin library
+koin = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5" }
 junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5" }
 junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit5" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk-android" }
+mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk-agent" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

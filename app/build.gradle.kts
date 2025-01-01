@@ -44,8 +44,11 @@ dependencies {
     implementation(libs.kotlin.logging)
     implementation(libs.koin)
     testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.mockk)
     testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation(libs.junit.jupiter.params)
     androidTestImplementation(libs.junit.jupiter.api)
+    androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.mockk.agent)
     androidTestImplementation(libs.androidx.espresso.core)
 }
