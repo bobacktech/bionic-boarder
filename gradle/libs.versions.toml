@@ -12,6 +12,8 @@ android-junit5-plugin = "1.11.2.0"
 mockk = "1.13.14"
 mockk-android = "1.13.14"
 mockk-agent = "1.13.14"
+logback-android = "3.0.0"
+slf4j = "2.0.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -26,10 +28,10 @@ junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-para
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk-android" }
 mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk-agent" }
-
+logback-android = { group = "com.github.tony19", name = "logback-android", version.ref = "logback-android" }
+slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "android-junit5-plugin" }
-

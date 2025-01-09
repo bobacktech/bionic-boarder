@@ -18,7 +18,18 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -43,6 +54,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.kotlin.logging)
     implementation(libs.koin)
+    implementation(libs.slf4j.api)
+    implementation(libs.logback.android)
     testImplementation(libs.junit.jupiter.api)
     testImplementation(libs.mockk)
     testRuntimeOnly(libs.junit.jupiter.engine)
