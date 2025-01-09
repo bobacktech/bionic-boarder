@@ -1,6 +1,6 @@
 <configuration>
     <!-- Define a timestamp variable -->
-    <timestamp key="logFileDate" datePattern="yyyy-MM-dd_HH-mm-ss" />
+    <timestamp datePattern="yyyy-MM-dd_HH-mm-ss" key="logFileDate" />
 
     <!-- Console appender for development -->
     <appender name="LOGCAT" class="ch.qos.logback.classic.android.LogcatAppender">
@@ -9,7 +9,7 @@
         </encoder>
     </appender>
 
-     File appender with timestamp in file name
+    <!-- File appender with timestamp in file name-->
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>/data/data/net.bobacktech.bionicboarder/files/app_${logFileDate}.log</file>
         <encoder>
