@@ -44,6 +44,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+        freeCompilerArgs += listOf(
+            "-opt-in=kotlin.ExperimentalUnsignedTypes"
+        )
     }
 }
 
