@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.slf4j.api)
     implementation(libs.logback.android)
     testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.assertj.core)
     testImplementation(libs.mockk)
     testRuntimeOnly(libs.junit.jupiter.engine)
     testImplementation(libs.junit.jupiter.params)
