@@ -308,4 +308,77 @@ abstract class Query<DATA> : net.bobacktech.bionicboarder.vesc.Query<DATA>() {
         0x0ed1.toShort(),
         0x1ef0.toShort()
     )
+
+
+    /**
+     *  These are the FW 6.00 specific queries.
+     */
+    class FirmwareVersion : Query<Nothing>() {
+        override val queryID: UByte = 0u
+
+        override fun createIDAndDataByteArray(data: Nothing?): UByteArray {
+            return ubyteArrayOf(queryID)
+        }
+    }
+
+    class Heartbeat : Query<Nothing>() {
+        override val queryID: UByte = 29u
+
+        override fun createIDAndDataByteArray(data: Nothing?): UByteArray {
+            return ubyteArrayOf(queryID)
+        }
+    }
+
+    class State : Query<Nothing>() {
+        override val queryID: UByte = 4u
+
+        override fun createIDAndDataByteArray(data: Nothing?): UByteArray {
+            return ubyteArrayOf(queryID)
+        }
+    }
+
+    class IMUState : Query<Nothing>() {
+        override val queryID: UByte = 65u
+
+        override fun createIDAndDataByteArray(data: Nothing?): UByteArray {
+            return ubyteArrayOf(queryID)
+        }
+    }
+
+    class Reboot : Query<Nothing>() {
+        override val queryID: UByte = 28u
+
+        override fun createIDAndDataByteArray(data: Nothing?): UByteArray {
+            return ubyteArrayOf(queryID)
+        }
+    }
+
+    class Current : Query<Double>() {
+        override val queryID: UByte = 6u
+
+        override fun createIDAndDataByteArray(data: Double?): UByteArray {
+            val b = UByteArray(5)
+            b[0] = queryID
+            val d = (data!! * 1000.0).toInt()
+            b[1] = (d shr 24).toUByte()
+            b[2] = (d shr 16).toUByte()
+            b[3] = (d shr 8).toUByte()
+            b[4] = d.toUByte()
+            return b
+        }
+    }
+
+    class RPM : Query<Int>() {
+        override val queryID: UByte = 8u
+
+        override fun createIDAndDataByteArray(data: Int?): UByteArray {
+            val b = UByteArray(5)
+            b[0] = queryID
+            b[1] = (data!! shr 24).toUByte()
+            b[2] = (data shr 16).toUByte()
+            b[3] = (data shr 8).toUByte()
+            b[4] = data.toUByte()
+            return b
+        }
+    }
 }
