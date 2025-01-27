@@ -1,5 +1,9 @@
 package net.bobacktech.bionicboarder.vesc
 
+/**
+ * Response from the VESC State query that contains the current state of the VESC controller that
+ * is relevant to the Bionic Boarder app.
+ */
 abstract class StateResponse : Response() {
 
     abstract val mosfetTemp: Float
@@ -10,4 +14,5 @@ abstract class StateResponse : Response() {
     abstract val wattHours: Float
     abstract val inputVoltage: Float
     abstract val fault: String
+
 }
