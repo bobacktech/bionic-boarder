@@ -10,7 +10,7 @@ class ResponseTest : Response() {
     override var responseID: Int = 0
         get() = TODO("Implementation not needed")
 
-    override fun populate(responsePacket: UByteArray) {
+    override fun populateImpl(responsePacket: UByteArray) {
         TODO("Implementation not needed")
     }
 
