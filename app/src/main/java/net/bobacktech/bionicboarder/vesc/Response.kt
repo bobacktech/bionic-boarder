@@ -5,7 +5,17 @@ abstract class Response {
 
     abstract var responseID: Int
 
-    abstract fun populate(responsePacket: UByteArray)
+    private var isPopulated = false
+
+    fun populate(responsePacket: UByteArray) {
+        if (isPopulated) {
+            throw IllegalStateException("populate() can only be called once per instance of class Response")
+        }
+        populateImpl(responsePacket)
+        isPopulated = true
+    }
+
+    protected abstract fun populateImpl(responsePacket: UByteArray)
 
     protected inline fun <reified T> item(
         data: UByteArray,
