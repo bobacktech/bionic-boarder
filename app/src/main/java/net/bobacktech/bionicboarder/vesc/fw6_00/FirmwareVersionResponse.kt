@@ -17,10 +17,8 @@ class FirmwareVersionResponse : FirmwareVersionResponse() {
     override val versionMajor: String by lazy { _versionMajor }
     override val versionMinor: String by lazy { _versionMinor }
 
-    protected val payloadDataStartIndex: Int = 3
-
     override fun populateImpl(responsePacket: UByteArray) {
-        var index = payloadDataStartIndex
+        var index = 3
         _versionMajor = (item<UByte>(responsePacket, index++)!!).toString()
         _versionMinor = (item<UByte>(responsePacket, index++)!!).toString()
         val hwName: String = item(responsePacket, index)!!
