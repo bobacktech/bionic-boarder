@@ -44,7 +44,7 @@ class IMUStateReponse : IMUStateResponse() {
     override val quat3: Float by lazy { _quat3 }
     override val quat4: Float by lazy { _quat4 }
 
-    override fun populate(responsePacket: UByteArray) {
+    override fun populateImpl(responsePacket: UByteArray) {
         TODO()
     }
 }

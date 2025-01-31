@@ -26,7 +26,7 @@ class StateResponse : StateResponse() {
     override val inputVoltage: Float by lazy { _inputVoltage }
     override val fault: String by lazy { _fault }
 
-    override fun populate(responsePacket: UByteArray) {
+    override fun populateImpl(responsePacket: UByteArray) {
         TODO("Not yet implemented")
     }
 }

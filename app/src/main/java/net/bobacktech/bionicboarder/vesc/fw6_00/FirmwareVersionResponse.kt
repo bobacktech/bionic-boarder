@@ -17,7 +17,7 @@ class FirmwareVersionResponse : FirmwareVersionResponse() {
     override val versionMajor: String by lazy { _versionMajor }
     override val versionMinor: String by lazy { _versionMinor }
 
-    override fun populate(responsePacket: UByteArray) {
+    override fun populateImpl(responsePacket: UByteArray) {
         TODO("Not yet implemented")
     }
 }
