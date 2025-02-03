@@ -44,7 +44,43 @@ class IMUStateReponse : IMUStateResponse() {
     override val quat3: Float by lazy { _quat3 }
     override val quat4: Float by lazy { _quat4 }
 
+    /**
+     * Populate the response object with the data from the response packet
+     * The IMU data starts at position 5 in the response packet.
+     */
     override fun populateImpl(responsePacket: UByteArray) {
-        TODO()
+        var index = 5
+        _roll = item(responsePacket, index, 4)!!
+        index += 4
+        _pitch = item(responsePacket, index, 4)!!
+        index += 4
+        _yaw = item(responsePacket, index, 4)!!
+        index += 4
+        _accelX = item(responsePacket, index, 4)!!
+        index += 4
+        _accelY = item(responsePacket, index, 4)!!
+        index += 4
+        _accelZ = item(responsePacket, index, 4)!!
+        index += 4
+        _gyroX = item(responsePacket, index, 4)!!
+        index += 4
+        _gyroY = item(responsePacket, index, 4)!!
+        index += 4
+        _gyroZ = item(responsePacket, index, 4)!!
+        index += 4
+        _magX = item(responsePacket, index, 4)!!
+        index += 4
+        _magY = item(responsePacket, index, 4)!!
+        index += 4
+        _magZ = item(responsePacket, index, 4)!!
+        index += 4
+        _quat1 = item(responsePacket, index, 4)!!
+        index += 4
+        _quat2 = item(responsePacket, index, 4)!!
+        index += 4
+        _quat3 = item(responsePacket, index, 4)!!
+        index += 4
+        _quat4 = item(responsePacket, index, 4)!!
     }
+
 }
