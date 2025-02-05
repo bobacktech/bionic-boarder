@@ -3,7 +3,7 @@ package net.bobacktech.bionicboarder.vesc
 
 abstract class Response {
 
-    abstract var responseID: Int
+    abstract val responseID: Int
 
     private var isPopulated = false
 

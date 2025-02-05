@@ -7,7 +7,7 @@ import org.junit.jupiter.api.TestInstance
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ResponseTest : Response() {
 
-    override var responseID: Int = 0
+    override val responseID: Int
         get() = TODO("Implementation not needed")
 
     override fun populateImpl(responsePacket: UByteArray) {
