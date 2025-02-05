@@ -22,7 +22,8 @@ class FirmwareVersionResponse : FirmwareVersionResponse() {
         _versionMajor = (item<UByte>(responsePacket, index++)!!).toString()
         _versionMinor = (item<UByte>(responsePacket, index++)!!).toString()
         val hwName: String = item(responsePacket, index)!!
-        index += hwName.length
+        // Skip the NULL terminator
+        index += hwName.length + 1
         index += 15
         val hwType: UByte = item(responsePacket, index)!!
         _versionDescription = "Firmware Version: $_versionMajor.$_versionMinor\n" +

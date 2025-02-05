@@ -40,7 +40,7 @@ class StateResponse : StateResponse() {
         index = 23
         _dutyCycle = item(responsePacket, index, 2, 1000.0)!!
         index = 25
-        _rpm = item(responsePacket, index, 4, 1.0)!!
+        _rpm = item(responsePacket, index, 4)!!
         index = 29
         _inputVoltage = item(responsePacket, index, 2, 10.0)!!
         index = 39
@@ -49,7 +49,7 @@ class StateResponse : StateResponse() {
         val faultCode: UByte = item(responsePacket, index, 1)!!
 
         var f: FAULTS = FAULTS.FAULT_CODE_NONE
-        when (faultCode!!.toInt()) {
+        when (faultCode.toInt()) {
             0 -> f = FAULTS.FAULT_CODE_NONE
             1 -> f = FAULTS.FAULT_CODE_OVER_VOLTAGE
             2 -> f = FAULTS.FAULT_CODE_UNDER_VOLTAGE
