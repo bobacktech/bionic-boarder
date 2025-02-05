@@ -1,8 +1,8 @@
 package net.bobacktech.bionicboarder.vesc.fw6_00
 
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 
 class StateResponseTest {
 
