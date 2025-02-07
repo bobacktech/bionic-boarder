@@ -22,4 +22,10 @@
         <appender-ref ref="LOGCAT" />
         <appender-ref ref="FILE" />
     </root>
+
+    <logger name="org.koin" additivity="false" level="INFO">
+        <appender-ref ref="LOGCAT" />
+        <appender-ref ref="FILE" />
+    </logger>
+
 </configuration>
