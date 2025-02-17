@@ -6,6 +6,7 @@ import kotlin.properties.Delegates
 class StateResponse : StateResponse() {
 
     override val responseID: Int = 4
+    override val responseByteLength: Int = 73
 
     // Backing fields using Delegates.notNull()
     private var _mosfetTemp: Float by Delegates.notNull()
