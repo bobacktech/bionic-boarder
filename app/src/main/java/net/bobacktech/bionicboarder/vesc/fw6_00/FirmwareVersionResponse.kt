@@ -6,6 +6,7 @@ import kotlin.properties.Delegates
 class FirmwareVersionResponse : FirmwareVersionResponse() {
 
     override val responseID: Int = 0
+    override val responseByteLength: Int = 65
 
     // Backing fields using Delegates.notNull()
     private var _versionDescription: String by Delegates.notNull()

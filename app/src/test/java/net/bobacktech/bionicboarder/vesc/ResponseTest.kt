@@ -9,6 +9,8 @@ class ResponseTest : Response() {
 
     override val responseID: Int
         get() = TODO("Implementation not needed")
+    override val responseByteLength: Int
+        get() = TODO("Implementation not needed")
 
     override fun populateImpl(responsePacket: UByteArray) {
         TODO("Implementation not needed")
