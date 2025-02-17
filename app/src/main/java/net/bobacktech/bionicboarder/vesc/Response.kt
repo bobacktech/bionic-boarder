@@ -5,6 +5,8 @@ abstract class Response {
 
     abstract val responseID: Int
 
+    abstract val responseByteLength: Int
+
     private var isPopulated = false
 
     fun populate(responsePacket: UByteArray) {

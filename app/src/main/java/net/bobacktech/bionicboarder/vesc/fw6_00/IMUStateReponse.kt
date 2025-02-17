@@ -7,6 +7,7 @@ import kotlin.properties.Delegates
 class IMUStateReponse : IMUStateResponse() {
 
     override val responseID: Int = 65
+    override val responseByteLength: Int = 65
 
     // Backing properties using Delegates.notNull()
     private var _accelX: Float by Delegates.notNull()
