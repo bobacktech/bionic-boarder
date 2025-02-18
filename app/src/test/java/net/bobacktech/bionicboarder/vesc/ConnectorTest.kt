@@ -9,7 +9,6 @@ import net.bobacktech.bionicboarder.vesc.fw6_00.StateResponse
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 
 class ConnectorTest {
 
@@ -28,7 +27,7 @@ class ConnectorTest {
     }
 
     @Test
-    fun `test requestData with FirmwareVersionResponse`() {
+    fun `test requestResponse with FirmwareVersionResponse`() {
         // Arrange
         val queryChoice = QueryProducer.QueryChoice.FW_VERSION
         val testPacket = ubyteArrayOf(1u, 2u, 3u)
@@ -38,7 +37,7 @@ class ConnectorTest {
         testConnector.setMockResponse(testResponse)
 
         // Act
-        val response: FirmwareVersionResponse = testConnector.requestData(queryChoice)
+        val response: FirmwareVersionResponse = testConnector.requestResponse(queryChoice)
 
         // Assert
         assertNotNull(response)
@@ -46,7 +45,7 @@ class ConnectorTest {
     }
 
     @Test
-    fun `test requestData with StateResponse`() {
+    fun `test requestResponse with StateResponse`() {
         // Arrange
         val queryChoice = QueryProducer.QueryChoice.STATE
         val testPacket = ubyteArrayOf(1u, 2u, 3u)
@@ -56,7 +55,7 @@ class ConnectorTest {
         testConnector.setMockResponse(testResponse)
 
         // Act
-        val response: StateResponse = testConnector.requestData(queryChoice)
+        val response: StateResponse = testConnector.requestResponse(queryChoice)
 
         // Assert
         assertNotNull(response)
@@ -64,7 +63,7 @@ class ConnectorTest {
     }
 
     @Test
-    fun `test requestData with IMUStateResponse`() {
+    fun `test requestResponse with IMUStateResponse`() {
         // Arrange
         val queryChoice = QueryProducer.QueryChoice.IMU_STATE
         val testPacket = ubyteArrayOf(1u, 2u, 3u)
@@ -74,7 +73,7 @@ class ConnectorTest {
         testConnector.setMockResponse(testResponse)
 
         // Act
-        val response: IMUStateReponse = testConnector.requestData(queryChoice)
+        val response: IMUStateReponse = testConnector.requestResponse(queryChoice)
 
         // Assert
         assertNotNull(response)
@@ -82,7 +81,7 @@ class ConnectorTest {
     }
 
     @Test
-    fun `test command without data`() {
+    fun `test sendQuery without data`() {
         // Arrange
         val queryChoice = QueryProducer.QueryChoice.HEARTBEAT
         val testPacket = ubyteArrayOf(1u, 2u, 3u)
@@ -90,14 +89,14 @@ class ConnectorTest {
         every { mockQueryProducer.invoke(queryChoice) } returns testPacket
 
         // Act
-        testConnector.command(queryChoice)
+        testConnector.sendQuery(queryChoice)
 
         // Assert
         verify { mockQueryProducer.invoke(queryChoice) }
     }
 
     @Test
-    fun `test command with data`() {
+    fun `test sendQuery with data`() {
         // Arrange
         val queryChoice = QueryProducer.QueryChoice.RPM
         val testData = 42
@@ -106,13 +105,12 @@ class ConnectorTest {
         every { mockQueryProducer.invoke(queryChoice, testData) } returns testPacket
 
         // Act
-        testConnector.command(queryChoice, testData)
+        testConnector.sendQuery(queryChoice, testData)
 
         // Assert
         verify { mockQueryProducer.invoke(queryChoice, testData) }
     }
 
-    // Test implementation of Connector for testing purposes
     private class TestConnector(queryProducer: QueryProducer) : Connector() {
         override var firmwareVersion: FirmwareVersion = FirmwareVersion.FW_6_00
         override val qp: QueryProducer = queryProducer
@@ -129,12 +127,12 @@ class ConnectorTest {
             // Implementation for testing
         }
 
-        override fun sendQuery(packet: UByteArray) {
+        override fun sendBytes(packet: UByteArray) {
             wasQuerySent = true
             lastSentQuery = packet
         }
 
-        override fun readResponse(msgSize: Int): UByteArray {
+        override fun readBytes(numBytes: Int): UByteArray {
             return mockResponse
         }
     }

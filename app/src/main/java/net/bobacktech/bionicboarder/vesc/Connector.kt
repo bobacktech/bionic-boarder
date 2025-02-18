@@ -5,8 +5,8 @@ import net.bobacktech.bionicboarder.vesc.fw6_00.IMUStateReponse as FW600IMUState
 import net.bobacktech.bionicboarder.vesc.fw6_00.StateResponse as FW600State
 
 /**
- * Abstract class representing a connector to the VESC (Vedder Electronic Speed Controller).
- * This class provides methods to determine the firmware version, send queries, and read responses from the VESC.
+ * This class represents an abstract contract for the communication between the app and the VESC. The
+ * specific implementation of the communication channel is left to the child class.
  */
 abstract class Connector {
     /**
@@ -26,19 +26,19 @@ abstract class Connector {
     }
 
     /**
-     * Abstract property representing the firmware version of the connector.
+     * The firmware version of the VESC on the board.
      * This property must be set in the [determineFirmwareVersion] method implemented in the child class.
      */
     abstract val firmwareVersion: FirmwareVersion
 
     /**
-     * Abstract property representing the query producer of the connector.
+     * The query producer for [firmwareVersion] of the VESC.
      * This property must be set in the [determineFirmwareVersion] method implemented in the child class.
      */
     protected abstract val qp: QueryProducer
 
     /**
-     * Abstract method to determine the firmware version of the VESC that the app is connected to.
+     * This method determines the firmware version of the VESC that the app is connected to.
      * This method must set the [firmwareVersion] and the [qp] properties.
      * @throws [FirmwareVersionNotSupportedException] if the firmware version is not supported.
      */
@@ -47,26 +47,26 @@ abstract class Connector {
 
 
     /**
-     * Abstract method to send a query packet to the VESC to perform some action.
-     * @param packet The query packet to be sent.
+     * This method sends a byte packet over the communication channel to the VESC.
+     * @param packet The byte packet to be sent.
      */
-    protected abstract fun sendQuery(packet: UByteArray)
+    protected abstract fun sendBytes(packet: UByteArray)
 
     /**
-     * Abstract method to read a response packet from the VESC.
-     * @param msgSize The size of the response packet to be read.
-     * @return The response packet read from the VESC.
+     * This method reads [numBytes] bytes from the communication channel to the VESC.
+     * @param numBytes The number of bytes to read.
+     * @return The bytes read from the communication channel.
      */
-    protected abstract fun readResponse(msgSize: Int): UByteArray
+    protected abstract fun readBytes(numBytes: Int): UByteArray
 
     /**
-     * Generic method to request data from the VESC. The method sends a query packet to the VESC and reads the response. It
+     * This method sends a query packet to the VESC and reads the response bytes from the VESC. It
      * then populates the response object with the data received from the VESC.
      * @param qc The query choice to be used for the request.
      * @return A [Response] object populated with the data received from the VESC.
      */
-    inline fun <reified R : Response> requestData(qc: QueryProducer.QueryChoice): R {
-        command(qc)
+    inline fun <reified R : Response> requestResponse(qc: QueryProducer.QueryChoice): R {
+        sendQuery(qc)
         val response: R
         val rClazz = R::class.java
         when (firmwareVersion) {
@@ -79,22 +79,21 @@ abstract class Connector {
                 } as R
             }
         }
-        val rawResponse = `access$readResponse`(response.responseByteLength)
+        val rawResponse = `access$readBytes`(response.responseByteLength)
         response.populate(rawResponse)
         return response
     }
 
     /**
-     * This method sends a command to the VESC that does not to process a response from the VESC.
-     * @param qc The query choice to be used for the command.
-     * @param data Optional data to be sent with the command.
+     * This method sends a query to the VESC to perform some action.
+     * @param qc The query choice to be sent.
+     * @param data Optional data to be sent with the query.
      */
-    fun command(qc: QueryProducer.QueryChoice, data: Number? = null) {
+    fun sendQuery(qc: QueryProducer.QueryChoice, data: Number? = null) {
         val packet = if (data == null) qp(qc) else qp(qc, data)
-        sendQuery(packet)
+        sendBytes(packet)
     }
 
     @PublishedApi
-    internal fun `access$readResponse`(msgSize: Int) = readResponse(msgSize)
-
+    internal fun `access$readBytes`(numBytes: Int) = readBytes(numBytes)
 }
