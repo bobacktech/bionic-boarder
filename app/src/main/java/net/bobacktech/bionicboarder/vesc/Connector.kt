@@ -65,12 +65,10 @@ abstract class Connector {
      * @param qc The query choice to be used for the request.
      * @return A [Response] object populated with the data received from the VESC.
      */
-    @Suppress("UNCHECKED_CAST")
-    fun <R : Response> requestData(qc: QueryProducer.QueryChoice): R {
-        val packet = qp(qc)
-        sendQuery(packet)
+    inline fun <reified R : Response> requestData(qc: QueryProducer.QueryChoice): R {
+        command(qc)
         val response: R
-        val rClazz = Response::class.java
+        val rClazz = R::class.java
         when (firmwareVersion) {
             FirmwareVersion.FW_6_00 -> {
                 response = when {
@@ -81,7 +79,7 @@ abstract class Connector {
                 } as R
             }
         }
-        val rawResponse = readResponse(response.responseByteLength)
+        val rawResponse = `access$readResponse`(response.responseByteLength)
         response.populate(rawResponse)
         return response
     }
@@ -95,4 +93,8 @@ abstract class Connector {
         val packet = if (data == null) qp(qc) else qp(qc, data)
         sendQuery(packet)
     }
+
+    @PublishedApi
+    internal fun `access$readResponse`(msgSize: Int) = readResponse(msgSize)
+
 }
