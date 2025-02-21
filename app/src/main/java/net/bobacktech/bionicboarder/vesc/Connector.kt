@@ -9,6 +9,17 @@ import net.bobacktech.bionicboarder.vesc.fw6_00.StateResponse as FW600State
  * specific implementation of the communication channel is left to the child class.
  */
 abstract class Connector {
+
+    /**
+     * The maximum time to wait for a response from the VESC in milliseconds.
+     */
+    protected abstract val RESPONSE_TIMEOUT_MS: Int
+
+    /**
+     * Exception thrown when the response from the VESC is not received within the [RESPONSE_TIMEOUT_MS].
+     */
+    class ResponseTimeoutException(message: String) : Exception(message)
+
     /**
      * Exception thrown when the firmware version is not supported.
      */
