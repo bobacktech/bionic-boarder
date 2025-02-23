@@ -4,10 +4,15 @@ import android.bluetooth.BluetoothSocket
 import android.os.SystemClock
 import net.bobacktech.bionicboarder.vesc.Connector
 import net.bobacktech.bionicboarder.vesc.QueryProducer
+import net.bobacktech.bionicboarder.vesc.fw6_00.Query
 
+/**
+ * This class represents a classic Bluetooth VESC connector. It is responsible for the communication between the app and the VESC over
+ * a classic Bluetooth connection.
+ */
 class ClassicBluetoothVescConnector(
     private val bluetoothSocket: BluetoothSocket,
-    private val RESPONSE_TIMEOUT_MS: Int
+    override val RESPONSE_TIMEOUT_MS: Int
 ) : Connector() {
 
     override lateinit var firmwareVersion: FirmwareVersion
@@ -16,9 +21,31 @@ class ClassicBluetoothVescConnector(
     override lateinit var qp: QueryProducer
         private set
 
-
+    /**
+     * This method uses FW_6_00 specific query to determine the firmware version of the VESC that the app is connected to. It
+     * assumes that the this query format is the same for all firmware versions.
+     * Based on the firmware version, it sets the [firmwareVersion] and the [qp] properties.
+     *
+     * @throws [FirmwareVersionNotSupportedException] if the firmware version is not supported.
+     */
     override fun determineFirmwareVersion() {
-        TODO("Not yet implemented")
+        val fwq = Query.FirmwareVersion()
+        val packet = fwq.form()
+        sendBytes(packet)
+        val response = readBytes(10)
+        val major = response[3].toString()
+        val minor = "0" + response[4].toString()
+        val key = major + "_$minor"
+        try {
+            firmwareVersion = FirmwareVersion.valueOf("FW_$key")
+            if (firmwareVersion == FirmwareVersion.FW_6_00) {
+                this.qp = net.bobacktech.bionicboarder.vesc.fw6_00.QueryProducer()
+            } else {
+                throw IllegalArgumentException("Unsupported firmware version: $key")
+            }
+        } catch (e: IllegalArgumentException) {
+            throw FirmwareVersionNotSupportedException("Firmware version $key is not supported")
+        }
     }
 
     override fun sendBytes(packet: UByteArray) {
@@ -39,9 +66,8 @@ class ClassicBluetoothVescConnector(
             )
             totalBytesRead += bytesAvailable
             elapsedTime = SystemClock.elapsedRealtime() - startTime
-            if (elapsedTime >= RESPONSE_TIMEOUT_MS) throw MessageReadTimeoutException()
+            if (elapsedTime >= RESPONSE_TIMEOUT_MS) throw ResponseTimeoutException("Response timeout exceeded: $RESPONSE_TIMEOUT_MS ms")
         }
-        if (totalBytesRead > numBytes) throw MessageSizeLessThanBytesReadException()
         return data.toUByteArray()
     }
 
