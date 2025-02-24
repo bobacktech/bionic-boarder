@@ -22,7 +22,7 @@ class ClassicBluetoothVescConnector(
         private set
 
     /**
-     * This method uses FW_6_00 specific query to determine the firmware version of the VESC that the app is connected to. It
+     * This method uses the FW 6.00 specific query to determine the firmware version of the VESC that the app is connected to. It
      * assumes that the this query format is the same for all firmware versions.
      * Based on the firmware version, it sets the [firmwareVersion] and the [qp] properties.
      *
