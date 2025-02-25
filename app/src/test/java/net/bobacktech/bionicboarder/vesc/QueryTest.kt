@@ -23,12 +23,12 @@ class QueryTest {
 
         override fun packetize(data: UByteArray): UByteArray {
             // Simple implementation for testing
-            return ubyteArrayOf(0xFEu) + data + calculateCRC(data)
+            return ubyteArrayOf(0xFEu) + data + calculateCRC()
         }
 
         override val crc16Table: ShortArray = ShortArray(256) { 0 }
 
-        private fun calculateCRC(data: UByteArray): UByteArray {
+        private fun calculateCRC(): UByteArray {
             // Dummy CRC calculation for testing
             return ubyteArrayOf(0xAAu, 0xBBu)
         }
