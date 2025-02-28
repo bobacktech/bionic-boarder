@@ -14,13 +14,11 @@ object VescConnectorFactory {
      * @param device The Bluetooth device to connect to.
      * @param responseTimeoutMs The timeout in milliseconds for the response.
      * @return Connector The classic Bluetooth VESC connector.
-     * @throws Connector.FirmwareVersionNotSupportedException if the firmware version is not supported.
      */
     fun createClassicBluetoothVescConnector(device: BluetoothDevice, responseTimeoutMs: Int): Connector {
         val uuidSpp: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
         val bs = device.createInsecureRfcommSocketToServiceRecord(uuidSpp)
         val classicBluetoothVescConnector = ClassicBluetoothVescConnector(bs, 50)
-        classicBluetoothVescConnector.determineFirmwareVersion()
         return classicBluetoothVescConnector
     }
 
