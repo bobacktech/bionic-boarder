@@ -12,13 +12,13 @@ object VescConnectorFactory {
      * Creates a classic Bluetooth VESC connector for the given device.
      *
      * @param device The Bluetooth device to connect to.
-     * @param responseTimeoutMs The timeout in milliseconds for the response.
+     * @param responseTimeout_ms The timeout in milliseconds for the response.
      * @return Connector The classic Bluetooth VESC connector.
      */
-    fun createClassicBluetoothVescConnector(device: BluetoothDevice, responseTimeoutMs: Int): Connector {
+    fun createClassicBluetoothVescConnector(device: BluetoothDevice, responseTimeout_ms: Int): Connector {
         val uuidSpp: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
         val bs = device.createInsecureRfcommSocketToServiceRecord(uuidSpp)
-        val classicBluetoothVescConnector = ClassicBluetoothVescConnector(bs, 50)
+        val classicBluetoothVescConnector = ClassicBluetoothVescConnector(bs, responseTimeout_ms)
         return classicBluetoothVescConnector
     }
 
