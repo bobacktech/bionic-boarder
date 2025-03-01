@@ -13,10 +13,10 @@ abstract class Connector {
     /**
      * The maximum time to wait for a response from the VESC in milliseconds.
      */
-    protected abstract val RESPONSE_TIMEOUT_MS: Int
+    protected abstract val responseTimeout_ms: Int
 
     /**
-     * Exception thrown when the response from the VESC is not received within the [RESPONSE_TIMEOUT_MS].
+     * Exception thrown when the response from the VESC is not received within the [responseTimeout_ms].
      */
     class ResponseTimeoutException(message: String) : Exception(message)
 

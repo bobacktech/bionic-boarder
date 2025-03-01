@@ -113,7 +113,7 @@ class ConnectorTest {
 
     private class TestConnector(queryProducer: QueryProducer) : Connector() {
 
-        override val RESPONSE_TIMEOUT_MS: Int
+        override val responseTimeout_ms: Int
             get() = TODO("Not yet implemented")
         override var firmwareVersion: FirmwareVersion = FirmwareVersion.FW_6_00
         override val qp: QueryProducer = queryProducer

@@ -12,7 +12,7 @@ import net.bobacktech.bionicboarder.vesc.fw6_00.Query
  */
 class ClassicBluetoothVescConnector(
     private val bluetoothSocket: BluetoothSocket,
-    override val RESPONSE_TIMEOUT_MS: Int
+    override val responseTimeout_ms: Int
 ) : Connector() {
 
     override lateinit var firmwareVersion: FirmwareVersion
@@ -66,7 +66,7 @@ class ClassicBluetoothVescConnector(
             )
             totalBytesRead += bytesAvailable
             elapsedTime = SystemClock.elapsedRealtime() - startTime
-            if (elapsedTime >= RESPONSE_TIMEOUT_MS) throw ResponseTimeoutException("Response timeout exceeded: $RESPONSE_TIMEOUT_MS ms")
+            if (elapsedTime >= responseTimeout_ms) throw ResponseTimeoutException("Response timeout exceeded: $responseTimeout_ms ms")
         }
         return data.toUByteArray()
     }
