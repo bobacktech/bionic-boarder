@@ -5,25 +5,25 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 
-class QueryTest {
-    private class TestQuery : Query<Int>() {
-        override val queryID: UByte = 1u
+class CommandTest {
+    private class TestCommand : Command<Int>() {
+        override val ID: UByte = 1u
         override fun createIDAndDataByteArray(data: Int?): UByteArray =
             UByteArray(5) { i ->
                 when (i) {
-                    0 -> queryID
+                    0 -> ID
                     else -> (data!! shr (32 - 8 * i)).toUByte()
                 }
             }
     }
 
-    private var query: TestQuery = TestQuery()
+    private var command: TestCommand = TestCommand()
 
     @Test
     @DisplayName("packetize method adds the data value in the proper segment of the packet")
     fun testPacketizeWithData() {
         val data: Int = 1234
-        val packet: UByteArray = query.form(data)
+        val packet: UByteArray = command.form(data)
         val uBytes = packet.sliceArray(3..6)
         val r = (uBytes[0].toInt() shl 24) or
                 (uBytes[1].toInt() shl 16) or
@@ -33,52 +33,52 @@ class QueryTest {
     }
 
     @Test
-    @DisplayName("verify Firmware Version query ID is in the packet")
-    fun testFirmwareVersionQuery() {
-        val fwq = Query.FirmwareVersion()
+    @DisplayName("verify Firmware Version command ID is in the packet")
+    fun testFirmwareVersionCommand() {
+        val fwq = Command.FirmwareVersion()
         val packet = fwq.form()
-        assert(packet[2] == fwq.queryID)
+        assert(packet[2] == fwq.ID)
     }
 
     @Test
-    @DisplayName("verify Heartbeat query ID is in the packet")
-    fun testHeartbeatQuery() {
-        val hbq = Query.Heartbeat()
+    @DisplayName("verify Heartbeat command ID is in the packet")
+    fun testHeartbeatCommand() {
+        val hbq = Command.Heartbeat()
         val packet = hbq.form()
-        assert(packet[2] == hbq.queryID)
+        assert(packet[2] == hbq.ID)
     }
 
     @Test
-    @DisplayName("verify State query ID is in the packet")
-    fun testStateQuery() {
-        val sq = Query.State()
+    @DisplayName("verify State command ID is in the packet")
+    fun testStateCommand() {
+        val sq = Command.State()
         val packet = sq.form()
-        assert(packet[2] == sq.queryID)
+        assert(packet[2] == sq.ID)
     }
 
     @Test
-    @DisplayName("verify IMU State query ID is in the packet")
-    fun testIMUStateQuery() {
-        val imuq = Query.IMUState()
+    @DisplayName("verify IMU State command ID is in the packet")
+    fun testIMUStateCommand() {
+        val imuq = Command.IMUState()
         val packet = imuq.form()
-        assert(packet[2] == imuq.queryID)
+        assert(packet[2] == imuq.ID)
     }
 
     @Test
-    @DisplayName("verify Reboot query ID is in the packet")
-    fun testRebootQuery() {
-        val rq = Query.Reboot()
+    @DisplayName("verify Reboot command ID is in the packet")
+    fun testRebootCommand() {
+        val rq = Command.Reboot()
         val packet = rq.form()
-        assert(packet[2] == rq.queryID)
+        assert(packet[2] == rq.ID)
     }
 
     @Test
-    @DisplayName("verify RPM query ID and data value are in the packet")
-    fun testRPMQuery() {
-        val rpmq = Query.RPM()
+    @DisplayName("verify RPM command ID and data value are in the packet")
+    fun testRPMCommand() {
+        val rpmq = Command.RPM()
         val rpm = 1234
         val packet = rpmq.form(rpm)
-        assert(packet[2] == rpmq.queryID)
+        assert(packet[2] == rpmq.ID)
         val uBytes = packet.sliceArray(3..6)
         val r = (uBytes[0].toInt() shl 24) or
                 (uBytes[1].toInt() shl 16) or
@@ -88,12 +88,12 @@ class QueryTest {
     }
 
     @Test
-    @DisplayName("verify Current query ID and data value are in the packet")
-    fun testCurrentQuery() {
-        val currentq = Query.Current()
+    @DisplayName("verify Current command ID and data value are in the packet")
+    fun testCurrentCommand() {
+        val currentq = Command.Current()
         val current = 23.5
         val packet = currentq.form(current)
-        assert(packet[2] == currentq.queryID)
+        assert(packet[2] == currentq.ID)
         val uBytes = packet.sliceArray(3..6)
         val r = ((uBytes[0].toInt() shl 24) or
                 (uBytes[1].toInt() shl 16) or

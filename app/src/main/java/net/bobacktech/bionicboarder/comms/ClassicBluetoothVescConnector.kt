@@ -3,8 +3,8 @@ package net.bobacktech.bionicboarder.comms
 import android.bluetooth.BluetoothSocket
 import android.os.SystemClock
 import net.bobacktech.bionicboarder.vesc.Connector
-import net.bobacktech.bionicboarder.vesc.QueryProducer
-import net.bobacktech.bionicboarder.vesc.fw6_00.Query
+import net.bobacktech.bionicboarder.vesc.CommandProducer
+import net.bobacktech.bionicboarder.vesc.fw6_00.Command
 
 /**
  * This class represents a classic Bluetooth VESC connector. It is responsible for the communication between the app and the VESC over
@@ -18,18 +18,18 @@ class ClassicBluetoothVescConnector(
     override lateinit var firmwareVersion: FirmwareVersion
         private set
 
-    override lateinit var qp: QueryProducer
+    override lateinit var qp: CommandProducer
         private set
 
     /**
-     * This method uses the FW 6.00 specific query to determine the firmware version of the VESC that the app is connected to. It
-     * assumes that the this query format is the same for all firmware versions.
+     * This method uses the FW 6.00 specific command to determine the firmware version of the VESC that the app is connected to. It
+     * assumes that the this command format is the same for all firmware versions.
      * Based on the firmware version, it sets the [firmwareVersion] and the [qp] properties.
      *
      * @throws [FirmwareVersionNotSupportedException] if the firmware version is not supported.
      */
     override fun determineFirmwareVersion() {
-        val fwq = Query.FirmwareVersion()
+        val fwq = Command.FirmwareVersion()
         val packet = fwq.form()
         sendBytes(packet)
         val response = readBytes(10)
@@ -39,7 +39,7 @@ class ClassicBluetoothVescConnector(
         try {
             firmwareVersion = FirmwareVersion.valueOf("FW_$key")
             if (firmwareVersion == FirmwareVersion.FW_6_00) {
-                this.qp = net.bobacktech.bionicboarder.vesc.fw6_00.QueryProducer()
+                this.qp = net.bobacktech.bionicboarder.vesc.fw6_00.CommandProducer()
             } else {
                 throw IllegalArgumentException("Unsupported firmware version: $key")
             }
