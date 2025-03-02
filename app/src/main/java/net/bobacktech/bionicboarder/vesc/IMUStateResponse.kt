@@ -1,7 +1,7 @@
 package net.bobacktech.bionicboarder.vesc
 
 /**
- * Response from the VESC IMU State query that contains the current state of the VESC controller's
+ * Response from the VESC IMU State command that contains the current state of the VESC controller's
  * IMU that is relevant to the Bionic Boarder app.
  */
 abstract class IMUStateResponse : Response() {

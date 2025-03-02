@@ -7,17 +7,17 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class QueryTest {
+class CommandTest {
 
     // Concrete implementation for testing with Int data
-    private class TestQuery : Query<Int>() {
-        override val queryID: UByte = 0x1u
+    private class TestCommand : Command<Int>() {
+        override val ID: UByte = 0x1u
 
         override fun createIDAndDataByteArray(data: Int?): UByteArray {
             return if (data == null) {
-                ubyteArrayOf(queryID)
+                ubyteArrayOf(ID)
             } else {
-                ubyteArrayOf(queryID) + data.toByteArray()
+                ubyteArrayOf(ID) + data.toByteArray()
             }
         }
 
@@ -44,25 +44,25 @@ class QueryTest {
         }
     }
 
-    private lateinit var query: TestQuery
+    private lateinit var command: TestCommand
 
 
     @BeforeEach
     fun setup() {
-        query = TestQuery()
+        command = TestCommand()
     }
 
     @Nested
-    @DisplayName("Query Formation Tests")
-    inner class QueryFormationTests {
+    @DisplayName("Command Formation Tests")
+    inner class CommandFormationTests {
 
         @Test
         @DisplayName("form() should create correct packet structure without data")
         fun formShouldCreateCorrectPacketWithoutData() {
-            val result = query.form()
+            val result = command.form()
             assertThat(result.size).isGreaterThanOrEqualTo(4) // Header + ID + CRC (minimum)
             assertThat(result[0]).isEqualTo(0xFEu.toUByte()) // Header
-            assertThat(result[1]).isEqualTo(0x1u.toUByte())  // Query ID
+            assertThat(result[1]).isEqualTo(0x1u.toUByte())  // Command ID
             assertTrue(result.takeLast(2).toUByteArray().contentEquals(ubyteArrayOf(0xAAu, 0xBBu))) // CRC
         }
 
@@ -70,11 +70,11 @@ class QueryTest {
         @DisplayName("form() should create correct packet structure with data")
         fun formShouldCreateCorrectPacketWithData() {
             val testData = 12345
-            val result = query.form(testData)
+            val result = command.form(testData)
 
             assertThat(result.size).isGreaterThan(4) // Header + ID + Data + CRC
             assertThat(result[0]).isEqualTo(0xFEu.toUByte()) // Header
-            assertThat(result[1]).isEqualTo(0x1u.toUByte())  // Query ID
+            assertThat(result[1]).isEqualTo(0x1u.toUByte())  // Command ID
             val intBytes = result.slice(2..5).toUByteArray()
             val exp: Int = intBytes[0].toInt() shl 24 or
                     (intBytes[1].toInt() shl 16) or
@@ -87,12 +87,12 @@ class QueryTest {
 
 
     @Nested
-    @DisplayName("Query Properties Tests")
-    inner class QueryPropertiesTests {
+    @DisplayName("Command Properties Tests")
+    inner class CommandPropertiesTests {
         @Test
-        @DisplayName("queryID should return correct value")
-        fun queryIDShouldReturnCorrectValue() {
-            assertThat(query.queryID).isEqualTo(0x1u.toUByte())
+        @DisplayName("commandID should return correct value")
+        fun commandIDShouldReturnCorrectValue() {
+            assertThat(command.ID).isEqualTo(0x1u.toUByte())
         }
     }
 }

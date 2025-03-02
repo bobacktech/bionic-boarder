@@ -3,14 +3,14 @@ package net.bobacktech.bionicboarder.vesc.fw6_00
 import kotlin.experimental.and
 
 /**
- *  This class, for Firmware 6.00, represents an abstraction of a query for some information from the VESC
+ *  This class, for Firmware 6.00, represents an abstraction of a command for some information from the VESC
  *  or to command the VESC to take some action. It specifies the [crc16Table] and how to create and format the unsigned
  *  byte array that will be sent to the VESC.
  */
-abstract class Query<DATA> : net.bobacktech.bionicboarder.vesc.Query<DATA>() {
+abstract class Command<DATA> : net.bobacktech.bionicboarder.vesc.Command<DATA>() {
 
     /**
-     *  This method formulates the VESC query and returns a unsigned byte array. It must compute the CRC value and add
+     *  This method formulates the VESC command and returns a unsigned byte array. It must compute the CRC value and add
      *  that to the byte array.
      */
     override fun packetize(data: UByteArray): UByteArray {
@@ -313,52 +313,52 @@ abstract class Query<DATA> : net.bobacktech.bionicboarder.vesc.Query<DATA>() {
     /**
      *  These are the FW 6.00 specific queries.
      */
-    class FirmwareVersion : Query<Nothing>() {
-        override val queryID: UByte = 0u
+    class FirmwareVersion : Command<Nothing>() {
+        override val ID: UByte = 0u
 
         override fun createIDAndDataByteArray(data: Nothing?): UByteArray {
-            return ubyteArrayOf(queryID)
+            return ubyteArrayOf(ID)
         }
     }
 
-    class Heartbeat : Query<Nothing>() {
-        override val queryID: UByte = 29u
+    class Heartbeat : Command<Nothing>() {
+        override val ID: UByte = 29u
 
         override fun createIDAndDataByteArray(data: Nothing?): UByteArray {
-            return ubyteArrayOf(queryID)
+            return ubyteArrayOf(ID)
         }
     }
 
-    class State : Query<Nothing>() {
-        override val queryID: UByte = 4u
+    class State : Command<Nothing>() {
+        override val ID: UByte = 4u
 
         override fun createIDAndDataByteArray(data: Nothing?): UByteArray {
-            return ubyteArrayOf(queryID)
+            return ubyteArrayOf(ID)
         }
     }
 
-    class IMUState : Query<Nothing>() {
-        override val queryID: UByte = 65u
+    class IMUState : Command<Nothing>() {
+        override val ID: UByte = 65u
 
         override fun createIDAndDataByteArray(data: Nothing?): UByteArray {
-            return ubyteArrayOf(queryID)
+            return ubyteArrayOf(ID)
         }
     }
 
-    class Reboot : Query<Nothing>() {
-        override val queryID: UByte = 28u
+    class Reboot : Command<Nothing>() {
+        override val ID: UByte = 28u
 
         override fun createIDAndDataByteArray(data: Nothing?): UByteArray {
-            return ubyteArrayOf(queryID)
+            return ubyteArrayOf(ID)
         }
     }
 
-    class Current : Query<Double>() {
-        override val queryID: UByte = 6u
+    class Current : Command<Double>() {
+        override val ID: UByte = 6u
 
         override fun createIDAndDataByteArray(data: Double?): UByteArray {
             val b = UByteArray(5)
-            b[0] = queryID
+            b[0] = ID
             val d = (data!! * 1000.0).toInt()
             b[1] = (d shr 24).toUByte()
             b[2] = (d shr 16).toUByte()
@@ -368,12 +368,12 @@ abstract class Query<DATA> : net.bobacktech.bionicboarder.vesc.Query<DATA>() {
         }
     }
 
-    class RPM : Query<Int>() {
-        override val queryID: UByte = 8u
+    class RPM : Command<Int>() {
+        override val ID: UByte = 8u
 
         override fun createIDAndDataByteArray(data: Int?): UByteArray {
             val b = UByteArray(5)
-            b[0] = queryID
+            b[0] = ID
             b[1] = (data!! shr 24).toUByte()
             b[2] = (data shr 16).toUByte()
             b[3] = (data shr 8).toUByte()

@@ -43,10 +43,10 @@ abstract class Connector {
     abstract val firmwareVersion: FirmwareVersion
 
     /**
-     * The query producer for [firmwareVersion] of the VESC.
+     * The command producer for [firmwareVersion] of the VESC.
      * This property must be set in the [determineFirmwareVersion] method implemented in the child class.
      */
-    protected abstract val qp: QueryProducer
+    protected abstract val qp: CommandProducer
 
     /**
      * This method determines the firmware version of the VESC that the app is connected to.
@@ -71,13 +71,13 @@ abstract class Connector {
     protected abstract fun readBytes(numBytes: Int): UByteArray
 
     /**
-     * This method sends a query packet to the VESC and reads the response bytes from the VESC. It
+     * This method sends a command packet to the VESC and reads the response bytes from the VESC. It
      * then populates the response object with the data received from the VESC.
-     * @param qc The query choice to be used for the request.
+     * @param qc The command choice to be used for the request.
      * @return A [Response] object populated with the data received from the VESC.
      */
-    inline fun <reified R : Response> requestResponse(qc: QueryProducer.QueryChoice): R {
-        sendQuery(qc)
+    inline fun <reified R : Response> requestResponse(qc: CommandProducer.CommandChoice): R {
+        sendCommand(qc)
         val response: R
         val rClazz = R::class.java
         when (firmwareVersion) {
@@ -96,11 +96,11 @@ abstract class Connector {
     }
 
     /**
-     * This method sends a query to the VESC to perform some action.
-     * @param qc The query choice to be sent.
-     * @param data Optional data to be sent with the query.
+     * This method sends a command to the VESC to perform some action.
+     * @param qc The command choice to be sent.
+     * @param data Optional data to be sent with the command.
      */
-    fun sendQuery(qc: QueryProducer.QueryChoice, data: Number? = null) {
+    fun sendCommand(qc: CommandProducer.CommandChoice, data: Number? = null) {
         val packet = if (data == null) qp(qc) else qp(qc, data)
         sendBytes(packet)
     }
