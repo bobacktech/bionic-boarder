@@ -18,6 +18,7 @@ object VescConnectorFactory {
     fun createClassicBluetoothVescConnector(device: BluetoothDevice, responseTimeout_ms: Int): Connector {
         val uuidSpp: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
         val bs = device.createInsecureRfcommSocketToServiceRecord(uuidSpp)
+        bs.connect()
         val classicBluetoothVescConnector = ClassicBluetoothVescConnector(bs, responseTimeout_ms)
         return classicBluetoothVescConnector
     }
