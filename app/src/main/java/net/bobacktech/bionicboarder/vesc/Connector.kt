@@ -107,4 +107,9 @@ abstract class Connector {
 
     @PublishedApi
     internal fun `access$readBytes`(numBytes: Int) = readBytes(numBytes)
+
+    /**
+     * This method performs the necessary things to terminate the communication channel for this [Connector] with the VESC.
+     */
+    abstract fun shutdown()
 }

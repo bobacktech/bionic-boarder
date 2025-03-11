@@ -1,11 +1,13 @@
 package net.bobacktech.bionicboarder.comms
 
 import android.bluetooth.BluetoothSocket
+import android.os.SystemClock
 import io.mockk.MockKAnnotations
 import io.mockk.Runs
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.just
+import io.mockk.mockkStatic
 import io.mockk.verify
 import net.bobacktech.bionicboarder.vesc.Connector
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -14,8 +16,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.io.InputStream
 import java.io.OutputStream
-import io.mockk.mockkStatic
-import android.os.SystemClock
 
 class ClassicBluetoothVescConnectorTest {
 
@@ -79,5 +79,23 @@ class ClassicBluetoothVescConnectorTest {
         assertThrows<Connector.FirmwareVersionNotSupportedException> {
             connector.determineFirmwareVersion()
         }
+    }
+
+    @Test
+    fun `shutdown should completely shutdown the Bluetooth socket`() {
+        // Arrange
+        every { mockOutputStream.flush() } just Runs
+        every { mockOutputStream.close() } just Runs
+        every { mockInputStream.close() } just Runs
+        every { mockBluetoothSocket.close() } just Runs
+
+        // Act
+        connector.shutdown()
+
+        // Assert
+        verify { mockOutputStream.flush() }
+        verify { mockOutputStream.close() }
+        verify { mockInputStream.close() }
+        verify { mockBluetoothSocket.close() }
     }
 }
