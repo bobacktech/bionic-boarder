@@ -2,8 +2,8 @@ package net.bobacktech.bionicboarder.comms
 
 import android.bluetooth.BluetoothSocket
 import android.os.SystemClock
-import net.bobacktech.bionicboarder.vesc.Connector
 import net.bobacktech.bionicboarder.vesc.CommandProducer
+import net.bobacktech.bionicboarder.vesc.Connector
 import net.bobacktech.bionicboarder.vesc.fw6_00.Command
 
 /**
@@ -71,4 +71,16 @@ class ClassicBluetoothVescConnector(
         return data.toUByteArray()
     }
 
+    override fun shutdown() {
+        try {
+            bluetoothSocket.apply {
+                outputStream.flush()
+                outputStream.close()
+                inputStream.close()
+                close()
+            }
+        } catch (e: Exception) {
+            // TODO: Log error
+        }
+    }
 }
