@@ -32,16 +32,7 @@ class ClassicBluetoothConnectionTest : TestBase() {
     @AfterAll
     fun tearDown() {
         try {
-            VescConnectorFactory.bs.apply {
-                // Close the input stream
-                inputStream?.close()
-
-                // Close the output stream
-                outputStream?.close()
-
-                // Close the socket
-                close()
-            }
+            VescConnectorFactory.bs.close()
         } catch (e: Exception) {
             fail("Failed to close Bluetooth socket", e)
         }
