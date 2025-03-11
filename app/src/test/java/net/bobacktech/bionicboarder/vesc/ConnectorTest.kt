@@ -139,5 +139,8 @@ class ConnectorTest {
             return mockResponse
         }
 
+        override fun shutdown() {
+            TODO("Not yet implemented")
+        }
     }
 }
