@@ -11,7 +11,7 @@ import org.junit.jupiter.api.fail
 
 class ClassicBluetoothConnectionTest : TestBase() {
 
-    lateinit var connector: Connector
+    private lateinit var connector: Connector
 
     @BeforeAll
     fun prepare() {
@@ -32,9 +32,9 @@ class ClassicBluetoothConnectionTest : TestBase() {
     @AfterAll
     fun tearDown() {
         try {
-            VescConnectorFactory.bs.close()
+            connector.shutdown()
         } catch (e: Exception) {
-            fail("Failed to close Bluetooth socket", e)
+            fail("Failed to shutdown ClassicBluetoothVescConnector", e)
         }
     }
 }
