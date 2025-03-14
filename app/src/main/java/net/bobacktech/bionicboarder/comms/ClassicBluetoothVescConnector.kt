@@ -59,12 +59,16 @@ class ClassicBluetoothVescConnector(
         var elapsedTime: Long
         while (totalBytesRead < numBytes) {
             val bytesAvailable = bluetoothSocket.inputStream.available()
-            if (bytesAvailable > 0) bluetoothSocket.inputStream.read(
-                data,
-                totalBytesRead,
-                bytesAvailable
-            )
-            totalBytesRead += bytesAvailable
+            val remainingSpace = numBytes - totalBytesRead
+            val bytesToRead = minOf(bytesAvailable, remainingSpace)
+            if (bytesAvailable > 0) {
+                bluetoothSocket.inputStream.read(
+                    data,
+                    totalBytesRead,
+                    bytesToRead
+                )
+                totalBytesRead += bytesToRead
+            }
             elapsedTime = SystemClock.elapsedRealtime() - startTime
             if (elapsedTime >= responseTimeout_ms) throw ResponseTimeoutException("Response timeout exceeded: $responseTimeout_ms ms")
         }
