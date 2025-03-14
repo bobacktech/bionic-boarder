@@ -322,7 +322,7 @@ abstract class Command<DATA> : net.bobacktech.bionicboarder.vesc.Command<DATA>()
     }
 
     class Heartbeat : Command<Nothing>() {
-        override val ID: UByte = 29u
+        override val ID: UByte = 30u
 
         override fun createIDAndDataByteArray(data: Nothing?): UByteArray {
             return ubyteArrayOf(ID)
@@ -346,7 +346,7 @@ abstract class Command<DATA> : net.bobacktech.bionicboarder.vesc.Command<DATA>()
     }
 
     class Reboot : Command<Nothing>() {
-        override val ID: UByte = 28u
+        override val ID: UByte = 29u
 
         override fun createIDAndDataByteArray(data: Nothing?): UByteArray {
             return ubyteArrayOf(ID)
