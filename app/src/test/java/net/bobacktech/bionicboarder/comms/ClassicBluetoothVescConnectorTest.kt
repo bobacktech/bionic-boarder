@@ -47,7 +47,12 @@ class ClassicBluetoothVescConnectorTest {
     fun `determineFirmwareVersion should set correct firmware version for FW 6_00`() {
         // Arrange
         val expectedResponse = byteArrayOf(0, 0, 0, 6, 0, 0, 0, 0, 0, 0)
-        every { mockInputStream.available() } returns 10
+        var firstCall = true
+        every { mockInputStream.available() } answers {
+            if (firstCall) {
+                firstCall = false; 10
+            } else 0
+        }
         every { mockInputStream.read(any(), any(), any()) } answers {
             val buffer = arg<ByteArray>(0)
             System.arraycopy(expectedResponse, 0, buffer, arg(1), arg(2))
@@ -67,7 +72,12 @@ class ClassicBluetoothVescConnectorTest {
     fun `determineFirmwareVersion should throw exception for unsupported firmware`() {
         // Arrange
         val unsupportedVersion = byteArrayOf(0, 0, 0, 7, 0, 0, 0, 0, 0, 0)
-        every { mockInputStream.available() } returns 10
+        var firstCall = true
+        every { mockInputStream.available() } answers {
+            if (firstCall) {
+                firstCall = false; 10
+            } else 0
+        }
         every { mockInputStream.read(any(), any(), any()) } answers {
             val buffer = arg<ByteArray>(0)
             System.arraycopy(unsupportedVersion, 0, buffer, arg(1), arg(2))
