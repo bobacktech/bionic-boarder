@@ -72,6 +72,13 @@ class ClassicBluetoothVescConnector(
             elapsedTime = SystemClock.elapsedRealtime() - startTime
             if (elapsedTime >= responseTimeout_ms) throw ResponseTimeoutException("Response timeout exceeded: $responseTimeout_ms ms")
         }
+
+        // Discard the remaining bytes in the input stream to clear the stream in preparation for the next response.
+        val discardBuffer = ByteArray(1024)
+        while (bluetoothSocket.inputStream.available() > 0) {
+            bluetoothSocket.inputStream.read(discardBuffer)
+            Thread.sleep(10)
+        }
         return data.toUByteArray()
     }
 

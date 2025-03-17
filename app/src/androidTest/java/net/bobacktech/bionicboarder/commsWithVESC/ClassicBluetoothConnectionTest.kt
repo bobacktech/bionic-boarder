@@ -5,6 +5,9 @@ import net.bobacktech.bionicboarder.comms.ClassicBluetoothVescConnector
 import net.bobacktech.bionicboarder.comms.VescConnectorFactory
 import net.bobacktech.bionicboarder.vesc.CommandProducer
 import net.bobacktech.bionicboarder.vesc.Connector
+import net.bobacktech.bionicboarder.vesc.FirmwareVersionResponse
+import net.bobacktech.bionicboarder.vesc.StateResponse
+import net.bobacktech.bionicboarder.vesc.fw6_00.IMUStateReponse
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.MethodOrderer
@@ -29,19 +32,33 @@ class ClassicBluetoothConnectionTest : TestBase() {
     fun `verify ClassicBluetoothVescConnector is constructed properly`() {
         val device = vescBluetoothDevice()
         try {
-            connector = VescConnectorFactory.createClassicBluetoothVescConnector(device, 1000)
+            connector = VescConnectorFactory.createClassicBluetoothVescConnector(device, 10000)
         } catch (e: Exception) {
             fail("Failed to create Classic Bluetooth VESC connector", e)
         }
         assert(connector is ClassicBluetoothVescConnector)
+        assertDoesNotThrow("Failed to determine firmware version") {
+            connector.determineFirmwareVersion()
+        }
     }
 
     @Test
     @Order(2)
+    fun `send response commands to the Classic Bluetooth adapter on the VESC`() {
+        val firmwareVersionResponse: FirmwareVersionResponse =
+            connector.requestResponse(CommandProducer.CommandChoice.FW_VERSION)
+        assert(firmwareVersionResponse.versionMajor == "6") { "Failed to get firmware version major" }
+        val stateResponse: StateResponse =
+            connector.requestResponse(CommandProducer.CommandChoice.STATE)
+        assert(stateResponse.rpm > 0) { "Failed to get RPM value" }
+        val imuStateResponse: IMUStateReponse =
+            connector.requestResponse(CommandProducer.CommandChoice.IMU_STATE)
+        assert(imuStateResponse.accelX != 0f) { "Failed to get IMU state response ID" }
+    }
+
+    @Test
+    @Order(3)
     fun `send non-response commands to the Classic Bluetooth adapter on the VESC`() {
-        assertDoesNotThrow("Failed to determine firmware version") {
-            connector.determineFirmwareVersion()
-        }
         assertDoesNotThrow("Failed to send RPM command") {
             connector.sendCommand(CommandProducer.CommandChoice.RPM, 0)
         }
