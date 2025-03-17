@@ -34,10 +34,10 @@ class StateResponse : StateResponse() {
         _motorTemp = item(responsePacket, 5, 2, 10.0)!!
         _motorCurrent = item(responsePacket, 7, 4, 100.0)!!
         _dutyCycle = item(responsePacket, 23, 2, 1000.0)!!
-        _rpm = item(responsePacket, 27, 4)!!
-        _inputVoltage = item(responsePacket, 31, 2, 10.0)!!
-        _wattHours = item(responsePacket, 41, 4, 10000.0)!!
-        val faultCode: UByte = item(responsePacket, 57, 1)!!
+        _rpm = item(responsePacket, 25, 4)!!
+        _inputVoltage = item(responsePacket, 29, 2, 10.0)!!
+        _wattHours = item(responsePacket, 39, 4, 10000.0)!!
+        val faultCode: UByte = item(responsePacket, 55, 1)!!
 
         var f: FAULTS = FAULTS.FAULT_CODE_NONE
         when (faultCode.toInt()) {
