@@ -7,7 +7,7 @@ import kotlin.properties.Delegates
 class IMUStateReponse : IMUStateResponse() {
 
     override val responseID: Int = 65
-    override val responseByteLength: Int = 65
+    override val responseByteLength: Int = 3 + 68 // 3 bytes for the header
 
     // Backing properties using Delegates.notNull()
     private var _accelX: Float by Delegates.notNull()
@@ -50,38 +50,22 @@ class IMUStateReponse : IMUStateResponse() {
      * The IMU data starts at position 5 in the response packet.
      */
     override fun populateImpl(responsePacket: UByteArray) {
-        var index = 5
-        _roll = item(responsePacket, index, 4)!!
-        index += 4
-        _pitch = item(responsePacket, index, 4)!!
-        index += 4
-        _yaw = item(responsePacket, index, 4)!!
-        index += 4
-        _accelX = item(responsePacket, index, 4)!!
-        index += 4
-        _accelY = item(responsePacket, index, 4)!!
-        index += 4
-        _accelZ = item(responsePacket, index, 4)!!
-        index += 4
-        _gyroX = item(responsePacket, index, 4)!!
-        index += 4
-        _gyroY = item(responsePacket, index, 4)!!
-        index += 4
-        _gyroZ = item(responsePacket, index, 4)!!
-        index += 4
-        _magX = item(responsePacket, index, 4)!!
-        index += 4
-        _magY = item(responsePacket, index, 4)!!
-        index += 4
-        _magZ = item(responsePacket, index, 4)!!
-        index += 4
-        _quat1 = item(responsePacket, index, 4)!!
-        index += 4
-        _quat2 = item(responsePacket, index, 4)!!
-        index += 4
-        _quat3 = item(responsePacket, index, 4)!!
-        index += 4
-        _quat4 = item(responsePacket, index, 4)!!
+        // Skip the first 5 bytes of the response packet: 3 header bytes and 2 bytes for the mask
+        _roll = item(responsePacket, 5, 4)!!
+        _pitch = item(responsePacket, 9, 4)!!
+        _yaw = item(responsePacket, 13, 4)!!
+        _accelX = item(responsePacket, 17, 4)!!
+        _accelY = item(responsePacket, 21, 4)!!
+        _accelZ = item(responsePacket, 25, 4)!!
+        _gyroX = item(responsePacket, 29, 4)!!
+        _gyroY = item(responsePacket, 33, 4)!!
+        _gyroZ = item(responsePacket, 37, 4)!!
+        _magX = item(responsePacket, 41, 4)!!
+        _magY = item(responsePacket, 45, 4)!!
+        _magZ = item(responsePacket, 49, 4)!!
+        _quat1 = item(responsePacket, 53, 4)!!
+        _quat2 = item(responsePacket, 57, 4)!!
+        _quat3 = item(responsePacket, 61, 4)!!
+        _quat4 = item(responsePacket, 65, 4)!!
     }
-
 }

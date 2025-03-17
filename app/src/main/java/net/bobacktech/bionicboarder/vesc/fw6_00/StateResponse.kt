@@ -6,7 +6,7 @@ import kotlin.properties.Delegates
 class StateResponse : StateResponse() {
 
     override val responseID: Int = 4
-    override val responseByteLength: Int = 73
+    override val responseByteLength: Int = 3 + 74 // 3 bytes for the header
 
     // Backing fields using Delegates.notNull()
     private var _mosfetTemp: Float by Delegates.notNull()
@@ -29,25 +29,15 @@ class StateResponse : StateResponse() {
     override val fault: String by lazy { _fault }
 
     override fun populateImpl(responsePacket: UByteArray) {
-
-        // Starting at 3 assuming start_byte, LENGTH_HIGH and LENGTH_LOW, and packet_id
-        var index = 3
-
-        _mosfetTemp = item(responsePacket, index, 2, 10.0)!!
-        index = 5
-        _motorTemp = item(responsePacket, index, 2, 10.0)!!
-        index = 7
-        _motorCurrent = item(responsePacket, index, 4, 100.0)!!
-        index = 23
-        _dutyCycle = item(responsePacket, index, 2, 1000.0)!!
-        index = 25
-        _rpm = item(responsePacket, index, 4)!!
-        index = 29
-        _inputVoltage = item(responsePacket, index, 2, 10.0)!!
-        index = 39
-        _wattHours = item(responsePacket, index, 4, 10000.0)!!
-        index = 55
-        val faultCode: UByte = item(responsePacket, index, 1)!!
+        // Starting at 3 because of header: start_byte, payload byte length, and packet_id
+        _mosfetTemp = item(responsePacket, 3, 2, 10.0)!!
+        _motorTemp = item(responsePacket, 5, 2, 10.0)!!
+        _motorCurrent = item(responsePacket, 7, 4, 100.0)!!
+        _dutyCycle = item(responsePacket, 23, 2, 1000.0)!!
+        _rpm = item(responsePacket, 25, 4)!!
+        _inputVoltage = item(responsePacket, 29, 2, 10.0)!!
+        _wattHours = item(responsePacket, 39, 4, 10000.0)!!
+        val faultCode: UByte = item(responsePacket, 55, 1)!!
 
         var f: FAULTS = FAULTS.FAULT_CODE_NONE
         when (faultCode.toInt()) {
@@ -117,5 +107,4 @@ class StateResponse : StateResponse() {
         FAULT_CODE_ENCODER_FAULT,
         FAULT_CODE_LV_OUTPUT_FAULT
     }
-
 }
