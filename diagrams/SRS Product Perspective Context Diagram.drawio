@@ -1,18 +1,18 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.5 Chrome/134.0.6998.205 Electron/35.3.0 Safari/537.36" version="27.0.5">
   <diagram name="Page-1" id="ib0KKrDDxVYF5MeXXiUM">
-    <mxGraphModel dx="2572" dy="1003" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="2227" dy="802" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="1">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="SerGnJe19zh4DRKYyt9j-39" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Electric Longboard&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=none;horizontal=1;labelBorderColor=#000000;shadow=0;perimeterSpacing=0;strokeWidth=2;opacity=20;fillColor=#fad9d5;strokeColor=#ae4132;align=center;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;" vertex="1" parent="1">
-          <mxGeometry x="680" y="215" width="420" height="375" as="geometry" />
+        <mxCell id="SerGnJe19zh4DRKYyt9j-39" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Electric Longboard&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=none;horizontal=1;labelBorderColor=none;shadow=0;perimeterSpacing=0;strokeWidth=2;opacity=20;fillColor=#fad9d5;strokeColor=#ae4132;align=center;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;" parent="1" vertex="1">
+          <mxGeometry x="680" y="217.5" width="420" height="385" as="geometry" />
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-43" value="Execute Boosting&lt;div&gt;Control Scheme&lt;/div&gt;" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;exitX=0.92;exitY=0.804;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="3" target="SerGnJe19zh4DRKYyt9j-36">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-43" value="Boosting&lt;div&gt;Control Strategy&lt;/div&gt;" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;exitX=0.92;exitY=0.804;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="3" target="SerGnJe19zh4DRKYyt9j-36" edge="1">
           <mxGeometry x="-0.2279" y="19" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3" value="Bionic Boarder" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;labelBackgroundColor=none;" parent="1" vertex="1">
+        <mxCell id="3" value="Bionic Boarder Smartphone Application" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;labelBackgroundColor=none;" parent="1" vertex="1">
           <mxGeometry x="320" y="310" width="160" height="160" as="geometry" />
         </mxCell>
         <mxCell id="14" value="Specimen and collection" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" parent="1" edge="1">
@@ -28,51 +28,51 @@
         <mxCell id="sfKcnbmMzuwdX9yF3wZo-18" value="Cloud and/or local device storage" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;" parent="1" vertex="1">
           <mxGeometry x="-30" y="220" width="130" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-38" value="Rider&#39;s Configuration and&lt;div&gt;&amp;nbsp;Longboard Settings&lt;/div&gt;" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;" edge="1" parent="1" source="sfKcnbmMzuwdX9yF3wZo-21" target="3">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-38" value="Rider&#39;s Configuration and&lt;div&gt;&amp;nbsp;Longboard Settings&lt;/div&gt;" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;" parent="1" source="sfKcnbmMzuwdX9yF3wZo-21" target="3" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="sfKcnbmMzuwdX9yF3wZo-21" value="Longboard Rider" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;strokeColor=#666666;align=center;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;" parent="1" vertex="1">
+        <mxCell id="sfKcnbmMzuwdX9yF3wZo-21" value="&lt;div&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;Longboard Rider&lt;/font&gt;&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;strokeColor=#666666;align=center;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;horizontal=1;textShadow=0;" parent="1" vertex="1">
           <mxGeometry x="385" y="90" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-18" value="Store rider&#39;s configuration&amp;nbsp;&lt;div&gt;and ride data&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fillColor=#ffcccc;labelBackgroundColor=none;fontColor=#000000;horizontal=1;align=center;verticalAlign=middle;" edge="1" parent="1" source="3" target="sfKcnbmMzuwdX9yF3wZo-18">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-18" value="Rider&#39;s Configuration&amp;nbsp;&lt;div&gt;and Ride Data Store&lt;/div&gt;" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fillColor=#ffcccc;labelBackgroundColor=none;fontColor=#000000;horizontal=1;align=center;verticalAlign=middle;" parent="1" source="3" target="sfKcnbmMzuwdX9yF3wZo-18" edge="1">
           <mxGeometry x="0.0066" y="-19" width="50" height="50" relative="1" as="geometry">
             <mxPoint x="370" y="300" as="sourcePoint" />
             <mxPoint x="410" y="180" as="targetPoint" />
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-19" value="Smartphone IMU" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;" vertex="1" parent="1">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-19" value="Smartphone IMU" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;" parent="1" vertex="1">
           <mxGeometry x="-30" y="520" width="130" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-20" value="Smartphone GPS/Location Services" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;" vertex="1" parent="1">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-20" value="Smartphone GPS/Location Services" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;" parent="1" vertex="1">
           <mxGeometry x="-30" y="370" width="130" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-22" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;fillColor=#ffcccc;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="3">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-22" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;fillColor=#ffcccc;entryX=0;entryY=1;entryDx=0;entryDy=0;" parent="1" target="3" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="100" y="569.58" as="sourcePoint" />
             <mxPoint x="200" y="569.58" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-23" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Rider&#39;s Orientation for Fall Detection&lt;/font&gt;" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#FF8393;labelBackgroundColor=none;horizontal=1;" connectable="0" vertex="1" parent="SerGnJe19zh4DRKYyt9j-22">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-23" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Rider&#39;s Orientation for Fall Detection&lt;/font&gt;" style="edgeLabel;resizable=0;html=1;;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#FF8393;labelBackgroundColor=none;horizontal=1;" parent="SerGnJe19zh4DRKYyt9j-22" connectable="0" vertex="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="-23" y="3" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-30" value="Rider&#39;s Location for Tracking&amp;nbsp;&lt;div&gt;and Fall Detection&lt;/div&gt;" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.016;entryY=0.544;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;" edge="1" parent="1" source="SerGnJe19zh4DRKYyt9j-20" target="3">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-30" value="Rider&#39;s Location for Tracking&amp;nbsp;&lt;div&gt;and Fall Detection&lt;/div&gt;" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.016;entryY=0.544;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;" parent="1" source="SerGnJe19zh4DRKYyt9j-20" target="3" edge="1">
           <mxGeometry x="0.0145" y="19" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-32" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;" edge="1" parent="1" source="SerGnJe19zh4DRKYyt9j-20" target="SerGnJe19zh4DRKYyt9j-20">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-32" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;" parent="1" source="SerGnJe19zh4DRKYyt9j-20" target="SerGnJe19zh4DRKYyt9j-20" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-40" value="Longboard Inertial Data" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;entryX=0.324;entryY=0.983;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="SerGnJe19zh4DRKYyt9j-35" target="SerGnJe19zh4DRKYyt9j-36">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-40" value="Longboard Inertial Data" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;entryX=0.324;entryY=0.983;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="SerGnJe19zh4DRKYyt9j-35" target="SerGnJe19zh4DRKYyt9j-36" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-35" value="IMU Sensor" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;" vertex="1" parent="1">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-35" value="IMU Sensor" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;" parent="1" vertex="1">
           <mxGeometry x="695" y="445" width="130" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-41" value="Motor and IMU Real-time State" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;" edge="1" parent="1" source="SerGnJe19zh4DRKYyt9j-36" target="3">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-41" value="&lt;font&gt;Motor and IMU Real-time State&lt;/font&gt;" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;" parent="1" source="SerGnJe19zh4DRKYyt9j-36" target="3" edge="1">
           <mxGeometry x="0.3652" y="-14" relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="510" y="270" />
@@ -80,13 +80,13 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-42" value="Control Speed" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;" edge="1" parent="1" source="SerGnJe19zh4DRKYyt9j-36" target="SerGnJe19zh4DRKYyt9j-37">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-42" value="Motor Speed Control" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#000000;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#000000;labelBackgroundColor=none;horizontal=1;endArrow=classic;fillColor=#ffcccc;" parent="1" source="SerGnJe19zh4DRKYyt9j-36" target="SerGnJe19zh4DRKYyt9j-37" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-36" value="VESC Speed&amp;nbsp;&lt;div&gt;Controller&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;" vertex="1" parent="1">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-36" value="VESC Speed&amp;nbsp;&lt;div&gt;Controller&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;" parent="1" vertex="1">
           <mxGeometry x="825" y="275" width="130" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="SerGnJe19zh4DRKYyt9j-37" value="Electric Motor" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;" vertex="1" parent="1">
+        <mxCell id="SerGnJe19zh4DRKYyt9j-37" value="Electric Motor" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;" parent="1" vertex="1">
           <mxGeometry x="955" y="445" width="130" height="80" as="geometry" />
         </mxCell>
       </root>
