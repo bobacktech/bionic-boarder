@@ -1,0 +1,104 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9">
+  <diagram name="Page-1" id="ib0KKrDDxVYF5MeXXiUM">
+    <mxGraphModel dx="2066" dy="1203" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="14" value="Specimen and collection" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="15" value="report delivery offline" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="380" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sfKcnbmMzuwdX9yF3wZo-21" value="&lt;div&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;Longboard Rider&lt;/font&gt;&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;strokeColor=#666666;align=center;fontFamily=Helvetica;fontSize=12;fontColor=#333333;labelBackgroundColor=none;fillColor=#f5f5f5;horizontal=1;textShadow=0;" parent="1" vertex="1">
+          <mxGeometry x="220" y="560" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CbTRWkR76J8zcbdZSMRa-18" value="Bionic Boarder App" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=top;fillColor=#eeeeee;strokeColor=#36393d;fontSize=16;fontColor=#000000;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="840" y="280" width="380" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="NtJCmM9VllwKPNF-fU6l-15" value="Electric Longboard" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=top;fillColor=#eeeeee;strokeColor=#36393d;fontSize=16;fontColor=#000000;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="370" y="280" width="440" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="7s3CR-tw4a0rpZwH6RRs-16" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Fall or Jump Off&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&amp;nbsp;Longboard&lt;/span&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;fontColor=#7EA6E0;" parent="1" vertex="1">
+          <mxGeometry x="425" y="360" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="-pO5D620ASrmPBSO5rts-39" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;endArrow=none;startFill=0;shadow=0;jumpStyle=none;" parent="1" source="sfKcnbmMzuwdX9yF3wZo-21" target="7s3CR-tw4a0rpZwH6RRs-16" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="549.8181818181818" as="sourcePoint" />
+            <mxPoint x="450" y="468" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7s3CR-tw4a0rpZwH6RRs-23" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Get Longboard&#39;s Current Speed&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;fontColor=#7EA6E0;" parent="1" vertex="1">
+          <mxGeometry x="1010" y="600" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7tvb4L8AF0XeGwezENyy-22" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Stop the Longboard Motor&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;fontColor=#7EA6E0;" parent="1" vertex="1">
+          <mxGeometry x="870" y="710" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7tvb4L8AF0XeGwezENyy-23" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Algorithmically Detect if Rider&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;is Off the Longboard&lt;/span&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;fontColor=#7EA6E0;" parent="1" vertex="1">
+          <mxGeometry x="880" y="340" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7tvb4L8AF0XeGwezENyy-26" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Commnad the VESC&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Controller&lt;/font&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;fontColor=#7EA6E0;" parent="1" vertex="1">
+          <mxGeometry x="440" y="730" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WxsVvxFqft9MrdIIcdpb-15" value="&lt;span style=&quot;&quot;&gt;&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;&lt;/span&gt;" style="endArrow=classic;html=1;rounded=0;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;dashed=1;fontColor=#060606;align=center;labelBackgroundColor=none;entryX=0.315;entryY=0.963;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="7tvb4L8AF0XeGwezENyy-22" target="7tvb4L8AF0XeGwezENyy-23">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="870" y="774.81" as="sourcePoint" />
+            <mxPoint x="1127" y="713.81" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WxsVvxFqft9MrdIIcdpb-17" value="Smartphone System" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=top;fillColor=#eeeeee;strokeColor=#36393d;fontSize=16;fontColor=#000000;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="280" width="380" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="WxsVvxFqft9MrdIIcdpb-18" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Read Acceleration and&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;Attitude Vectors&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;from IMU Sensor&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;fontColor=#7EA6E0;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="340" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WxsVvxFqft9MrdIIcdpb-19" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Get Location from GPS&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;fontColor=#7EA6E0;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="580" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="7s3CR-tw4a0rpZwH6RRs-21" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=classic;html=1;rounded=0;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;dashed=1;fontColor=#060606;align=center;labelBackgroundColor=none;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="7tvb4L8AF0XeGwezENyy-23" target="WxsVvxFqft9MrdIIcdpb-18" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="930" y="429.99999999999994" as="sourcePoint" />
+            <mxPoint x="1177.6578531884752" y="442.3793822795839" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WxsVvxFqft9MrdIIcdpb-21" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=classic;html=1;rounded=0;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;dashed=1;fontColor=#060606;align=center;labelBackgroundColor=none;exitX=1;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="7tvb4L8AF0XeGwezENyy-23" target="WxsVvxFqft9MrdIIcdpb-19">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1100" y="450" as="sourcePoint" />
+            <mxPoint x="1300" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WxsVvxFqft9MrdIIcdpb-22" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Read Motor State&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;from VESC&lt;/span&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;fontColor=#7EA6E0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="530" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="WxsVvxFqft9MrdIIcdpb-24" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=classic;html=1;rounded=0;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;dashed=1;fontColor=#060606;align=center;labelBackgroundColor=none;exitX=0.345;exitY=1.013;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="7tvb4L8AF0XeGwezENyy-23" target="7s3CR-tw4a0rpZwH6RRs-23">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1080" y="470" as="sourcePoint" />
+            <mxPoint x="1341" y="583" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WxsVvxFqft9MrdIIcdpb-25" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=classic;html=1;rounded=0;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;dashed=1;fontColor=#060606;align=center;labelBackgroundColor=none;entryX=0.98;entryY=0.625;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="7s3CR-tw4a0rpZwH6RRs-23" target="WxsVvxFqft9MrdIIcdpb-22">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="869" y="590" as="sourcePoint" />
+            <mxPoint x="860" y="669" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WxsVvxFqft9MrdIIcdpb-26" value="&lt;span style=&quot;&quot;&gt;&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;&lt;/span&gt;" style="endArrow=classic;html=1;rounded=0;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;dashed=1;fontColor=#060606;align=center;labelBackgroundColor=none;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.025;exitY=0.375;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="7tvb4L8AF0XeGwezENyy-23" target="7s3CR-tw4a0rpZwH6RRs-16">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="877" y="370" as="sourcePoint" />
+            <mxPoint x="620" y="431" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WxsVvxFqft9MrdIIcdpb-27" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=classic;html=1;rounded=0;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;dashed=1;fontColor=#060606;align=center;labelBackgroundColor=none;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="7tvb4L8AF0XeGwezENyy-22" target="7tvb4L8AF0XeGwezENyy-26">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="954" y="722" as="sourcePoint" />
+            <mxPoint x="690" y="670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
