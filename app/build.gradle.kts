@@ -6,11 +6,14 @@ plugins {
 
 android {
     namespace = "net.bobacktech.bionicboarder"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "net.bobacktech.bionicboarder"
         minSdk = 34
+
+        // The minimum SDK version is set to 34 (which is Android 14) to ensure compatibility with the latest Android features.
+        // noinspection OldTargetApi
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
