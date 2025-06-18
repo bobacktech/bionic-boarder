@@ -20,7 +20,7 @@ class MissionClock {
     /**
      * Computes the elapsed time since the mission started.
      */
-    fun invoke(): Long {
+    operator fun invoke(): Long {
         return (SystemClock.elapsedRealtime() - startTime)
     }
 }
