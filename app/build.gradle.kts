@@ -63,6 +63,8 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.slf4j.api)
     implementation(libs.logback.android)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
     testImplementation(libs.junit.jupiter.api)
     testImplementation(libs.assertj.core)
     testImplementation(libs.mockk)

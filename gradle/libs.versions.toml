@@ -1,6 +1,7 @@
 [versions]
 agp = "8.10.1"
 kotlin = "1.9.24"
+coroutines = "1.8.1"
 coreKtx = "1.16.0"
 espressoCore = "3.6.1"
 appcompat = "1.7.1"
@@ -33,6 +34,8 @@ mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "moc
 mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk-agent" }
 logback-android = { group = "com.github.tony19", name = "logback-android", version.ref = "logback-android" }
 slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
