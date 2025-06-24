@@ -11,6 +11,14 @@ import net.bobacktech.bionicboarder.vesc.StateResponse
 import net.bobacktech.bionicboarder.vesc.fw6_00.IMUStateReponse
 import java.util.concurrent.ConcurrentLinkedDeque
 
+/**
+ * This class is primarily responsible for being a collector of VESC and IMU data during a riding mission.
+ *
+ * @property connector The connector used to communicate with the VESC.
+ * @property mc The mission clock used to timestamp the data.
+ * @property vescBuffer The buffer for storing VESC state responses.
+ * @property imuBuffer The buffer for storing IMU state responses.
+ */
 class VESCAndIMUDataCollector(
     private val connector: Connector,
     private val mc: MissionClock,
@@ -18,6 +26,10 @@ class VESCAndIMUDataCollector(
     private val imuBuffer: ConcurrentLinkedDeque<Pair<IMUStateResponse, Long>>
 ) {
 
+    /**
+     * Starts collecting data from the VESC and IMU in a coroutine.
+     * The data is collected until the coroutine is cancelled or an exception occurs.
+     */
     suspend fun collectData() {
         while (currentCoroutineContext().isActive) {
             delay(1)
