@@ -1,6 +1,7 @@
 package net.bobacktech.bionicboarder.csf
 
 import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import net.bobacktech.bionicboarder.utils.MissionClock
 import net.bobacktech.bionicboarder.vesc.CommandProducer
@@ -19,6 +20,7 @@ class VESCAndIMUDataCollector(
 
     suspend fun collectData() {
         while (currentCoroutineContext().isActive) {
+            delay(1)
             try {
                 val stateResponse: StateResponse =
                     connector.requestResponse(CommandProducer.CommandChoice.STATE)
