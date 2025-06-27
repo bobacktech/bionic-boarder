@@ -1,0 +1,151 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9">
+  <diagram name="VESC and IMU Sensor Data Acquisition Loop" id="vesc-imu-loop">
+    <mxGraphModel dx="1722" dy="1003" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-1" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#ff0000;" parent="1" vertex="1">
+          <mxGeometry x="240" y="413.12" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-2" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#ff0000;" parent="1" vertex="1">
+          <mxGeometry x="1215" y="413.12" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-3" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Add the latest acceleration and ERPM data points to algo buffer&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="375" y="413.12" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-4" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Compute mission time duration of data points in algo buffer&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="640" y="413.12" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-5" value="&lt;font color=&quot;#000000&quot;&gt;Is time duration greater than 1000ms?&amp;nbsp;&lt;/font&gt;" style="rhombus;whiteSpace=wrap;html=1;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="950" y="380" width="120" height="116.24" as="geometry" />
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-6" value="no" style="edgeStyle=orthogonalEdgeStyle;html=1;align=left;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="DLUhYBMh8PzgYEKwgWeW-5" target="DLUhYBMh8PzgYEKwgWeW-2" edge="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="1320" y="213.12" as="targetPoint" />
+            <mxPoint x="910" y="372.5000000000001" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="1130" y="438.12" />
+              <mxPoint x="1130" y="438.12" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-7" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="DLUhYBMh8PzgYEKwgWeW-1" target="DLUhYBMh8PzgYEKwgWeW-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="436.46000000000004" as="targetPoint" />
+            <mxPoint x="260" y="436.46000000000004" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-8" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="DLUhYBMh8PzgYEKwgWeW-3" target="DLUhYBMh8PzgYEKwgWeW-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="655" y="437.70000000000005" as="targetPoint" />
+            <mxPoint x="550" y="438.12" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-9" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="DLUhYBMh8PzgYEKwgWeW-4" target="DLUhYBMh8PzgYEKwgWeW-5" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="940" y="437.70000000000005" as="targetPoint" />
+            <mxPoint x="850" y="437.70000000000005" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startFill=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="DLUhYBMh8PzgYEKwgWeW-11" edge="1" target="DLUhYBMh8PzgYEKwgWeW-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="265" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-11" value="The detection strategy is executed within the rider-paddling-detection thread." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="165" y="260" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-20" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="DLUhYBMh8PzgYEKwgWeW-5" target="DLUhYBMh8PzgYEKwgWeW-23" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="710" y="563.12" as="targetPoint" />
+            <mxPoint x="1000" y="563.12" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-22" value="yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="DLUhYBMh8PzgYEKwgWeW-20" vertex="1" connectable="0">
+          <mxGeometry x="-0.9424" y="1" relative="1" as="geometry">
+            <mxPoint x="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-23" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Execute specific paddle detection algo&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="460" y="603.12" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-24" value="&lt;font color=&quot;#000000&quot;&gt;Did Rider paddle?&lt;/font&gt;" style="rhombus;whiteSpace=wrap;html=1;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="735" y="570" width="120" height="116.24" as="geometry" />
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-26" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;strokeColor=#ff0000;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.071;entryY=0.6;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="DLUhYBMh8PzgYEKwgWeW-24" target="DLUhYBMh8PzgYEKwgWeW-32" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="980" y="800" as="targetPoint" />
+            <mxPoint x="795" y="693.1200000000001" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="795" y="738" />
+              <mxPoint x="900" y="738" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-27" value="yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="DLUhYBMh8PzgYEKwgWeW-26" vertex="1" connectable="0">
+          <mxGeometry x="-0.9424" y="1" relative="1" as="geometry">
+            <mxPoint x="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-28" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="DLUhYBMh8PzgYEKwgWeW-24" target="X29tNYWasboAAKFTecMK-8" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="960" y="628" as="targetPoint" />
+            <mxPoint x="1020" y="613.12" as="sourcePoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-29" value="no" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="DLUhYBMh8PzgYEKwgWeW-28" vertex="1" connectable="0">
+          <mxGeometry x="-0.9424" y="1" relative="1" as="geometry">
+            <mxPoint x="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-31" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="DLUhYBMh8PzgYEKwgWeW-23" target="DLUhYBMh8PzgYEKwgWeW-24" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="610" y="627.7" as="targetPoint" />
+            <mxPoint x="505" y="627.7" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-32" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Set paddle detection state flag to true&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="890" y="713.12" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="X29tNYWasboAAKFTecMK-1" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Clear algo buffer&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="713.12" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="X29tNYWasboAAKFTecMK-2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="DLUhYBMh8PzgYEKwgWeW-32" target="X29tNYWasboAAKFTecMK-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1190" y="737.7" as="targetPoint" />
+            <mxPoint x="1090" y="737.7" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X29tNYWasboAAKFTecMK-5" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1.01;entryY=0.344;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="X29tNYWasboAAKFTecMK-1" target="DLUhYBMh8PzgYEKwgWeW-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1460" y="737.7" as="targetPoint" />
+            <mxPoint x="1330" y="737.7" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="1300" y="738" />
+              <mxPoint x="1300" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X29tNYWasboAAKFTecMK-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="X29tNYWasboAAKFTecMK-7" target="DLUhYBMh8PzgYEKwgWeW-23">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="901.24" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="X29tNYWasboAAKFTecMK-7" value="The algo only uses the last 1000ms worth of data points from the buffer." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="175" y="593.28" width="180" height="69.68" as="geometry" />
+        </mxCell>
+        <mxCell id="X29tNYWasboAAKFTecMK-8" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Set paddle detection state flag to false&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="990" y="603.12" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="X29tNYWasboAAKFTecMK-9" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.377;entryY=0.978;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="X29tNYWasboAAKFTecMK-8" target="DLUhYBMh8PzgYEKwgWeW-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1230" y="627.7" as="targetPoint" />
+            <mxPoint x="1150" y="627.7" as="sourcePoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
