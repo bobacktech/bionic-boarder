@@ -22,7 +22,7 @@ class PredefinedPropertiesUnit(
     /**
      *  Returns a read-only copy of the predefined properties map.
      */
-    fun properties() = props.toMap()
+    fun properties(): Map<String, Any> = java.util.Collections.unmodifiableMap(props)
 
     /**
      *  Updates a predefined property with a new value.
