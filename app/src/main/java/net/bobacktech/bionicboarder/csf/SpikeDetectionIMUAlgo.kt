@@ -16,20 +16,21 @@ abstract class SpikeDetectionIMUAlgo(
         get() = _smartphoneImuSpikeRecord.toList()
 
     fun detectSpike(candidateStartTime_ms: Long, candidateEndTime_ms: Long): Boolean {
-        val vescImuBufferIterator =
-            vescImuBuffer.findIteratorAtOrNextOneAfterTimestamp(candidateEndTime_ms)
-        val smartphoneImuBufferIterator =
-            smartphoneImuBuffer.findIteratorAtOrNextOneAfterTimestamp(candidateEndTime_ms)
+        val vescImuBufferInitialElementIteratorPair =
+            vescImuBuffer.findVESCIteratorAtOrBeforeTimestamp(candidateEndTime_ms)
+        val smartphoneImuBufferInitialElementIteratorPair =
+            smartphoneImuBuffer.findSmartphoneIteratorAtOrBeforeTimestamp(candidateEndTime_ms)
+
         return executeSpikeDetectAlgo(
-            vescImuBufferIterator!!,
-            smartphoneImuBufferIterator!!,
+            vescImuBufferInitialElementIteratorPair!!,
+            smartphoneImuBufferInitialElementIteratorPair!!,
             candidateStartTime_ms
         )
     }
 
     protected abstract fun executeSpikeDetectAlgo(
-        vescImuBufferIterator: Iterator<VescImuStateTimed>,
-        smartphoneImuBufferIterator: Iterator<SmartphoneImuTimed>,
+        vescImuBufferInitialElementIteratorPair: Pair<VescImuStateTimed, Iterator<VescImuStateTimed>>,
+        smartphoneImuBufferInitialElementIteratorPair: Pair<SmartphoneImuTimed, Iterator<SmartphoneImuTimed>>,
         candidateStartTime_ms: Long
     ): Boolean
 

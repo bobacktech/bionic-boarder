@@ -9,28 +9,24 @@ data class SmartphoneImuTimed(val imuMagnitude: Double, val timestamp_ms: Long)
 typealias VescImuBuffer = ConcurrentLinkedDeque<VescImuStateTimed>
 typealias SmartphoneImuBuffer = ConcurrentLinkedDeque<SmartphoneImuTimed>
 
-fun VescImuBuffer.findIteratorAtOrNextOneAfterTimestamp(targetTimestamp: Long): Iterator<VescImuStateTimed>? {
+fun VescImuBuffer.findVESCIteratorAtOrBeforeTimestamp(targetTimestamp: Long): Pair<VescImuStateTimed, Iterator<VescImuStateTimed>>? {
     val iterator: MutableIterator<VescImuStateTimed> = descendingIterator()
-    var lastIterator = iterator
     while (iterator.hasNext()) {
         val element = iterator.next()
-        if (element.timestamp_ms < targetTimestamp) {
-            return lastIterator
+        if (element.timestamp_ms <= targetTimestamp) {
+            return Pair(element, iterator)
         }
-        lastIterator = iterator
     }
     return null
 }
 
-fun SmartphoneImuBuffer.findIteratorAtOrNextOneAfterTimestamp(targetTimestamp: Long): Iterator<SmartphoneImuTimed>? {
-    val iterator = descendingIterator()
-    var lastIterator = iterator
+fun SmartphoneImuBuffer.findSmartphoneIteratorAtOrBeforeTimestamp(targetTimestamp: Long): Pair<SmartphoneImuTimed, Iterator<SmartphoneImuTimed>>? {
+    val iterator: MutableIterator<SmartphoneImuTimed> = descendingIterator()
     while (iterator.hasNext()) {
         val element = iterator.next()
-        if (element.timestamp_ms < targetTimestamp) {
-            return lastIterator
+        if (element.timestamp_ms <= targetTimestamp) {
+            return Pair(element, iterator)
         }
-        lastIterator = iterator
     }
     return null
 }
