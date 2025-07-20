@@ -1,6 +1,5 @@
 package net.bobacktech.bionicboarder.csf
 
-
 /**
  * Abstract class for spike detection algorithms that operate on IMU data from both VESC and Smartphone.
  * This class provides a framework for detecting spikes in the IMU data streams and recording the results.
@@ -36,19 +35,43 @@ abstract class SpikeDetectionIMUAlgo(
         get() = _smartphoneImuSpikeRecord.toList()
 
     /**
-     * Detects a spike in the interval of the IMU data set that is defined by the start and end timestamps.
-     * This method will use the internal buffers to find the relevant data points and apply the spike detection algorithm.
+     * This method detects spikes in the IMU data streams within the specified time interval by executing the
+     * specific spike detection algorithm defined in the subclass.
+     * But first and by iterating down from the end of each buffer, it finds the first element in each buffer
+     * whose timestamp is less than or equal to the interval end time. It then passes these elements and their iterators
+     * to the specific spike detection algorithm execution method.
      *
      * @param intervalStartTime_ms The start time of the candidate spike in milliseconds.
      * @param intervalEndTime_ms The end time of the candidate spike in milliseconds.
-     * @return True if a spike is detected, false otherwise.
+     * @return True if a spike is detected within the interval, false otherwise.
      */
     fun detectSpike(intervalStartTime_ms: Long, intervalEndTime_ms: Long): Boolean {
-        val vescImuBufferInitialElementIteratorPair =
-            vescImuBuffer.findVESCIteratorAtOrBeforeTimestamp(intervalEndTime_ms)
-        val smartphoneImuBufferInitialElementIteratorPair =
-            smartphoneImuBuffer.findSmartphoneIteratorAtOrBeforeTimestamp(intervalEndTime_ms)
-
+        val it1 = vescImuBuffer.descendingIterator()
+        var vescImuBufferInitialElementIteratorPair:
+                Pair<VescImuStateTimed, Iterator<VescImuStateTimed>>? = null
+        while (it1.hasNext()) {
+            val element = it1.next()
+            if (element.timestamp_ms <= intervalEndTime_ms) {
+                vescImuBufferInitialElementIteratorPair = Pair(element, it1)
+                break
+            }
+        }
+        if (vescImuBufferInitialElementIteratorPair == null) {
+            return false
+        }
+        var smartphoneImuBufferInitialElementIteratorPair:
+                Pair<SmartphoneImuTimed, Iterator<SmartphoneImuTimed>>? = null
+        val it2 = smartphoneImuBuffer.descendingIterator()
+        while (it2.hasNext()) {
+            val element = it2.next()
+            if (element.timestamp_ms <= intervalEndTime_ms) {
+                smartphoneImuBufferInitialElementIteratorPair = Pair(element, it2)
+                break
+            }
+        }
+        if (smartphoneImuBufferInitialElementIteratorPair == null) {
+            return false
+        }
         return executeSpikeDetectAlgo(
             vescImuBufferInitialElementIteratorPair!!,
             smartphoneImuBufferInitialElementIteratorPair!!,
@@ -76,7 +99,7 @@ abstract class SpikeDetectionIMUAlgo(
     protected abstract fun executeSpikeDetectAlgo(
         vescImuBufferInitialElementIteratorPair: Pair<VescImuStateTimed, Iterator<VescImuStateTimed>>,
         smartphoneImuBufferInitialElementIteratorPair: Pair<SmartphoneImuTimed, Iterator<SmartphoneImuTimed>>,
-        candidateStartTime_ms: Long
+        intervalStartTime_ms: Long
     ): Boolean
 
     /**

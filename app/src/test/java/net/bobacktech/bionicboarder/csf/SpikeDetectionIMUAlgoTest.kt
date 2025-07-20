@@ -20,7 +20,7 @@ class SpikeDetectionIMUAlgoTest {
         override fun executeSpikeDetectAlgo(
             vescImuBufferInitialElementIteratorPair: Pair<VescImuStateTimed, Iterator<VescImuStateTimed>>,
             smartphoneImuBufferInitialElementIteratorPair: Pair<SmartphoneImuTimed, Iterator<SmartphoneImuTimed>>,
-            candidateStartTime_ms: Long
+            intervalStartTime_ms: Long
         ): Boolean {
             return true
         }
@@ -43,8 +43,8 @@ class SpikeDetectionIMUAlgoTest {
 
     @Test
     fun `verify that logic in detectSpike method executes with no error`() {
-        val candidateStartTime = 3L
-        val candidateEndTime = 8L
-        assert(spikeDetectionAlgo.detectSpike(candidateStartTime, candidateEndTime))
+        val intervalStartTime_ms = 3L
+        val intervalEndTime_ms = 8L
+        assert(spikeDetectionAlgo.detectSpike(intervalStartTime_ms, intervalEndTime_ms))
     }
 }
