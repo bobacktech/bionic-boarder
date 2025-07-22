@@ -1,13 +1,13 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/27.0.9 Chrome/134.0.6998.205 Electron/35.4.0 Safari/537.36" version="27.0.9">
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.4 Chrome/138.0.7204.97 Electron/37.2.1 Safari/537.36" version="28.0.4">
   <diagram name="VESC and IMU Sensor Data Acquisition Loop" id="vesc-imu-loop">
-    <mxGraphModel dx="2066" dy="2372" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1425" dy="2109" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="DLUhYBMh8PzgYEKwgWeW-1" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#ff0000;" parent="1" vertex="1">
           <mxGeometry x="240" y="413.12" width="50" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="DLUhYBMh8PzgYEKwgWeW-3" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Add the latest acceleration and ERPM data points to strategy buffer&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" parent="1" vertex="1">
+        <mxCell id="DLUhYBMh8PzgYEKwgWeW-3" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Add the latest ERPM data point to the&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;strategy buffer&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" parent="1" vertex="1">
           <mxGeometry x="375" y="413.12" width="140" height="50" as="geometry" />
         </mxCell>
         <mxCell id="DLUhYBMh8PzgYEKwgWeW-5" value="&lt;font color=&quot;#000000&quot;&gt;Is the data point within&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;the initial paddle contact&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;time window&lt;/font&gt;&lt;span style=&quot;color: rgb(0, 0, 0); background-color: transparent;&quot;&gt;?&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" parent="1" vertex="1">
@@ -156,8 +156,8 @@
             <mxPoint x="9" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="bFVVgAPLeKNCdtaf5ydo-18" value="&lt;font color=&quot;#000000&quot;&gt;Analyze IMU data from&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;both sensors&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1427.92" y="110" width="140" height="50" as="geometry" />
+        <mxCell id="bFVVgAPLeKNCdtaf5ydo-18" value="&lt;font color=&quot;#000000&quot;&gt;Check for spikes in the&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;IMU data from&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;both sensors during the time interval of this speed increase&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1426.88" y="90" width="142.08" height="77.5" as="geometry" />
         </mxCell>
         <mxCell id="bFVVgAPLeKNCdtaf5ydo-20" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#ff0000;" parent="1" vertex="1">
           <mxGeometry x="10" y="117.5" width="50" height="50" as="geometry" />
