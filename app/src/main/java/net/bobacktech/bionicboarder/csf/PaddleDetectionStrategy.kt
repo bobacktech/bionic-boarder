@@ -2,10 +2,10 @@ package net.bobacktech.bionicboarder.csf
 
 abstract class PaddleDetectionStrategy {
 
-    protected lateinit var spikeDetectionIMUAlgo: SpikeDetectionIMUAlgo
+    protected lateinit var sda: SpikeDetectionIMUAlgo
 
     fun setSpikeDetectionIMUAlgo(spikeDetectionIMUAlgo: SpikeDetectionIMUAlgo) {
-        this.spikeDetectionIMUAlgo = spikeDetectionIMUAlgo
+        this.sda = spikeDetectionIMUAlgo
     }
 
     protected val computedVelocityCurve: ArrayList<Pair<Int, Long>> = arrayListOf()
@@ -20,8 +20,11 @@ abstract class PaddleDetectionStrategy {
         }
     }
 
-    private var initialPaddleContactEndTime_ms: Long = 0
-    private var lastErpmDataPointInitialPaddleContactWindow: Pair<Int, Long>? = null
+    var initialPaddleContactEndTime_ms: Long = 0
+        private set
+
+    var lastErpmDataPointInitialPaddleContactWindow: Pair<Int, Long>? = null
+        private set
 
     protected val erpmBuffer: ArrayList<Pair<Int, Long>> = arrayListOf()
 
@@ -29,7 +32,7 @@ abstract class PaddleDetectionStrategy {
         erpmBuffer.add(Pair(erpm, timestamp))
         if (erpmBuffer.size > 1) {
             if (timestamp <= initialPaddleContactEndTime_ms) {
-                if (erpmBuffer[erpmBuffer.size - 2].first <= erpm) {
+                if (erpmBuffer[erpmBuffer.size - 2].first >= erpm) {
                     return
                 } else {
                     reset()
@@ -50,12 +53,14 @@ abstract class PaddleDetectionStrategy {
                     } else {
                         val startEndTimes = determinePaddleStartAndEndTimes()
                         val spikeDetected =
-                            spikeDetectionIMUAlgo.detectSpike(
+                            sda.detectSpike(
                                 startEndTimes.first,
                                 startEndTimes.second
                             )
                         if (spikeDetected) {
                             computePaddleVelocityCurve()
+                        } else {
+                            reset()
                         }
                     }
                 }

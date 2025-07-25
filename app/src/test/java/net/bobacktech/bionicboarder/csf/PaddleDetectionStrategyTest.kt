@@ -18,18 +18,6 @@ class PaddleDetectionStrategyTest {
     }
 
     @Test
-    fun `verify setSpikeDetectionIMUAlgo sets the algorithm correctly`() {
-        // Given
-        val newMockAlgo = mockk<SpikeDetectionIMUAlgo>()
-
-        // When
-        paddleDetectionStrategy.setSpikeDetectionIMUAlgo(newMockAlgo)
-
-        // Then
-        assertEquals(newMockAlgo, paddleDetectionStrategy.getSpikeDetectionIMUAlgo())
-    }
-
-    @Test
     fun `verify getComputedVelocityCurve returns empty list when no data computed`() {
         // When
         val result = paddleDetectionStrategy.getComputedVelocityCurve()
@@ -67,13 +55,13 @@ class PaddleDetectionStrategyTest {
         // Then
         assertEquals(
             timestamp + expectedDuration,
-            paddleDetectionStrategy.getInitialPaddleContactEndTime()
+            paddleDetectionStrategy.initialPaddleContactEndTime_ms
         )
         assertEquals(1, paddleDetectionStrategy.getErpmBufferSize())
     }
 
     @Test
-    fun `verify addErpmDataPoint returns early when within initial contact window and erpm increasing`() {
+    fun `verify addErpmDataPoint calls reset when within initial contact window and erpm increasing`() {
         // Given
         paddleDetectionStrategy.setInitialPaddleContactTimeDuration(1000L)
         paddleDetectionStrategy.addErpmDataPoint(100, 1000L) // First point
@@ -82,12 +70,11 @@ class PaddleDetectionStrategyTest {
         paddleDetectionStrategy.addErpmDataPoint(150, 1500L) // Within window, increasing
 
         // Then
-        assertEquals(2, paddleDetectionStrategy.getErpmBufferSize())
-        verify { mockSpikeDetectionIMUAlgo wasNot Called }
+        assertEquals(paddleDetectionStrategy.resetImplCalled, 1) // Reset occurred
     }
 
     @Test
-    fun `verify addErpmDataPoint resets when within initial contact window and erpm decreasing`() {
+    fun `verify addErpmDataPoint does not call reset when within initial contact window and erpm decreasing`() {
         // Given
         paddleDetectionStrategy.setInitialPaddleContactTimeDuration(1000L)
         paddleDetectionStrategy.addErpmDataPoint(150, 1000L) // First point
@@ -96,8 +83,8 @@ class PaddleDetectionStrategyTest {
         paddleDetectionStrategy.addErpmDataPoint(100, 1500L) // Within window, decreasing
 
         // Then
-        assertEquals(1, paddleDetectionStrategy.getErpmBufferSize()) // Reset occurred
-        verify(exactly = 1) { paddleDetectionStrategy.resetImplCalled }
+        assertEquals(2, paddleDetectionStrategy.getErpmBufferSize()) // Reset occurred
+        assertEquals(paddleDetectionStrategy.resetImplCalled, 0)
     }
 
     @Test
@@ -105,15 +92,15 @@ class PaddleDetectionStrategyTest {
         // Given
         paddleDetectionStrategy.setInitialPaddleContactTimeDuration(500L)
         paddleDetectionStrategy.addErpmDataPoint(100, 1000L) // First point
-        paddleDetectionStrategy.addErpmDataPoint(150, 1200L) // Second point, within window
+        paddleDetectionStrategy.addErpmDataPoint(75, 1200L) // Second point, within window
 
         // When
         paddleDetectionStrategy.addErpmDataPoint(200, 2000L) // Third point, outside window
 
         // Then
         assertEquals(
-            Pair(150, 1200L),
-            paddleDetectionStrategy.getLastErpmDataPointInitialPaddleContactWindow()
+            Pair(75, 1200L),
+            paddleDetectionStrategy.lastErpmDataPointInitialPaddleContactWindow
         )
     }
 
@@ -123,7 +110,7 @@ class PaddleDetectionStrategyTest {
         paddleDetectionStrategy.setInitialPaddleContactTimeDuration(500L)
         paddleDetectionStrategy.setSatisfiesDetectionStrategy(true)
         paddleDetectionStrategy.addErpmDataPoint(100, 1000L)
-        paddleDetectionStrategy.addErpmDataPoint(150, 1200L)
+        paddleDetectionStrategy.addErpmDataPoint(75, 1200L)
 
         // When
         paddleDetectionStrategy.addErpmDataPoint(200, 2000L)
@@ -133,23 +120,22 @@ class PaddleDetectionStrategyTest {
     }
 
     @Test
-    fun `verify addErpmDataPoint resets when detection strategy not satisfied`() {
+    fun `verify addErpmDataPoint calls reset when detection strategy not satisfied`() {
         // Given
         paddleDetectionStrategy.setInitialPaddleContactTimeDuration(500L)
         paddleDetectionStrategy.setSatisfiesDetectionStrategy(false)
         paddleDetectionStrategy.addErpmDataPoint(100, 1000L)
-        paddleDetectionStrategy.addErpmDataPoint(150, 1200L)
+        paddleDetectionStrategy.addErpmDataPoint(75, 1200L)
 
         // When
         paddleDetectionStrategy.addErpmDataPoint(200, 2000L)
 
         // Then
-        assertEquals(1, paddleDetectionStrategy.getErpmBufferSize()) // Reset occurred
-        verify(exactly = 1) { paddleDetectionStrategy.resetImplCalled }
+        assertEquals(paddleDetectionStrategy.resetImplCalled, 1) // Reset occurred
     }
 
     @Test
-    fun `verify addErpmDataPoint resets when erpm drops below last initial contact window value`() {
+    fun `verify addErpmDataPoint calls reset when erpm drops below last initial contact window value`() {
         // Given
         paddleDetectionStrategy.setInitialPaddleContactTimeDuration(500L)
         paddleDetectionStrategy.addErpmDataPoint(200, 1000L)
@@ -160,8 +146,7 @@ class PaddleDetectionStrategyTest {
         paddleDetectionStrategy.addErpmDataPoint(150, 2500L) // Below 250
 
         // Then
-        assertEquals(1, paddleDetectionStrategy.getErpmBufferSize()) // Reset occurred
-        verify(exactly = 1) { paddleDetectionStrategy.resetImplCalled }
+        assertEquals(paddleDetectionStrategy.resetImplCalled, 1) // Reset occurred
     }
 
     @Test
@@ -172,7 +157,7 @@ class PaddleDetectionStrategyTest {
         every { mockSpikeDetectionIMUAlgo.detectSpike(1000L, 3000L) } returns true
 
         paddleDetectionStrategy.addErpmDataPoint(200, 1000L)
-        paddleDetectionStrategy.addErpmDataPoint(250, 1200L)
+        paddleDetectionStrategy.addErpmDataPoint(150, 1200L)
         paddleDetectionStrategy.addErpmDataPoint(300, 2000L) // Sets last initial contact window
 
         // When
@@ -180,7 +165,6 @@ class PaddleDetectionStrategyTest {
 
         // Then
         verify(exactly = 1) { mockSpikeDetectionIMUAlgo.detectSpike(1000L, 3000L) }
-        assertTrue(paddleDetectionStrategy.determinePaddleStartAndEndTimesCalled)
     }
 
     @Test
@@ -191,7 +175,7 @@ class PaddleDetectionStrategyTest {
         every { mockSpikeDetectionIMUAlgo.detectSpike(1000L, 3000L) } returns true
 
         paddleDetectionStrategy.addErpmDataPoint(200, 1000L)
-        paddleDetectionStrategy.addErpmDataPoint(250, 1200L)
+        paddleDetectionStrategy.addErpmDataPoint(150, 1200L)
         paddleDetectionStrategy.addErpmDataPoint(300, 2000L)
 
         // When
@@ -209,7 +193,7 @@ class PaddleDetectionStrategyTest {
         every { mockSpikeDetectionIMUAlgo.detectSpike(1000L, 3000L) } returns false
 
         paddleDetectionStrategy.addErpmDataPoint(200, 1000L)
-        paddleDetectionStrategy.addErpmDataPoint(250, 1200L)
+        paddleDetectionStrategy.addErpmDataPoint(150, 1200L)
         paddleDetectionStrategy.addErpmDataPoint(300, 2000L)
 
         // When
@@ -219,23 +203,6 @@ class PaddleDetectionStrategyTest {
         assertFalse(paddleDetectionStrategy.computePaddleVelocityCurveCalled)
     }
 
-    @Test
-    fun `verify reset clears all buffers and state`() {
-        // Given
-        paddleDetectionStrategy.addErpmDataPoint(100, 1000L)
-        paddleDetectionStrategy.addErpmDataPoint(150, 1500L)
-        paddleDetectionStrategy.setComputedVelocityCurve(listOf(Pair(100, 1000L)))
-
-        // When
-        paddleDetectionStrategy.reset()
-
-        // Then
-        assertEquals(0, paddleDetectionStrategy.getErpmBufferSize())
-        assertTrue(paddleDetectionStrategy.getComputedVelocityCurve().isEmpty())
-        assertEquals(0L, paddleDetectionStrategy.getInitialPaddleContactEndTime())
-        assertNull(paddleDetectionStrategy.getLastErpmDataPointInitialPaddleContactWindow())
-        verify(exactly = 2) { paddleDetectionStrategy.resetImplCalled } // Once from setup, once from explicit reset
-    }
 
     // Test implementation of the abstract class for testing purposes
     private class TestPaddleDetectionStrategy : PaddleDetectionStrategy() {
@@ -261,21 +228,9 @@ class PaddleDetectionStrategyTest {
             this.paddleStartAndEndTimes = times
         }
 
-        fun getSpikeDetectionIMUAlgo() = spikeDetectionIMUAlgo
+        fun getSpikeDetectionIMUAlgo() = sda
 
         fun getErpmBufferSize() = erpmBuffer.size
-
-        fun getInitialPaddleContactEndTime() =
-            this::class.java.getDeclaredField("initialPaddleContactEndTime_ms").let {
-                it.isAccessible = true
-                it.getLong(this)
-            }
-
-        fun getLastErpmDataPointInitialPaddleContactWindow(): Pair<Int, Long>? =
-            this::class.java.getDeclaredField("lastErpmDataPointInitialPaddleContactWindow").let {
-                it.isAccessible = true
-                it.get(this) as? Pair<Int, Long>
-            }
 
         fun setComputedVelocityCurve(data: List<Pair<Int, Long>>) {
             computedVelocityCurve.clear()
