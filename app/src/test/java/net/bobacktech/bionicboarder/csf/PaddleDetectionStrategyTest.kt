@@ -228,8 +228,6 @@ class PaddleDetectionStrategyTest {
             this.paddleStartAndEndTimes = times
         }
 
-        fun getSpikeDetectionIMUAlgo() = sda
-
         fun getErpmBufferSize() = erpmBuffer.size
 
         fun setComputedVelocityCurve(data: List<Pair<Int, Long>>) {
