@@ -73,8 +73,8 @@ abstract class SpikeDetectionIMUAlgo(
             return false
         }
         return executeSpikeDetectAlgo(
-            vescImuBufferInitialElementIteratorPair!!,
-            smartphoneImuBufferInitialElementIteratorPair!!,
+            vescImuBufferInitialElementIteratorPair,
+            smartphoneImuBufferInitialElementIteratorPair,
             intervalStartTime_ms
         )
     }
