@@ -6,10 +6,8 @@ import kotlinx.coroutines.isActive
 import net.bobacktech.bionicboarder.utils.MissionClock
 import net.bobacktech.bionicboarder.vesc.CommandProducer
 import net.bobacktech.bionicboarder.vesc.Connector
-import net.bobacktech.bionicboarder.vesc.IMUStateResponse
 import net.bobacktech.bionicboarder.vesc.StateResponse
 import net.bobacktech.bionicboarder.vesc.fw6_00.IMUStateReponse
-import java.util.concurrent.ConcurrentLinkedDeque
 
 /**
  * This class is primarily responsible for being a collector of VESC and IMU data during a riding mission.
@@ -22,8 +20,8 @@ import java.util.concurrent.ConcurrentLinkedDeque
 class VESCAndIMUDataCollector(
     private val connector: Connector,
     private val mc: MissionClock,
-    private val vescBuffer: ConcurrentLinkedDeque<Pair<StateResponse, Long>>,
-    private val imuBuffer: ConcurrentLinkedDeque<Pair<IMUStateResponse, Long>>
+    private val vescBuffer: VescStateBuffer,
+    private val imuBuffer: VescImuBuffer
 ) {
 
     /**
@@ -39,8 +37,8 @@ class VESCAndIMUDataCollector(
                 val imuStateResponse: IMUStateReponse =
                     connector.requestResponse(CommandProducer.CommandChoice.IMU_STATE)
                 val ts = mc()
-                vescBuffer.add(Pair(stateResponse, ts))
-                imuBuffer.add(Pair(imuStateResponse, ts))
+                vescBuffer.add(VescStateTimed(stateResponse, ts))
+                imuBuffer.add(VescImuStateTimed(imuStateResponse, ts))
             } catch (e: Connector.ResponseTimeoutException) {
                 // Log the exception or handle it as needed
                 continue

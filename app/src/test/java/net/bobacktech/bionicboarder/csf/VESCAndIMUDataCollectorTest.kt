@@ -11,15 +11,12 @@ import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.runTest
 import net.bobacktech.bionicboarder.utils.MissionClock
 import net.bobacktech.bionicboarder.vesc.Connector
-import net.bobacktech.bionicboarder.vesc.IMUStateResponse
-import net.bobacktech.bionicboarder.vesc.StateResponse
 import net.bobacktech.bionicboarder.vesc.fw6_00.CommandProducer
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.util.concurrent.ConcurrentLinkedDeque
 
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -73,8 +70,8 @@ class VESCAndIMUDataCollectorTest {
 
     private lateinit var testConnector: TestConnector
     private lateinit var mockMissionClock: MissionClock
-    private lateinit var vescBuffer: ConcurrentLinkedDeque<Pair<StateResponse, Long>>
-    private lateinit var imuBuffer: ConcurrentLinkedDeque<Pair<IMUStateResponse, Long>>
+    private lateinit var vescBuffer: VescStateBuffer
+    private lateinit var imuBuffer: VescImuBuffer
     private lateinit var dataCollector: VESCAndIMUDataCollector
     private lateinit var testDispatcher: TestDispatcher
 
@@ -82,8 +79,8 @@ class VESCAndIMUDataCollectorTest {
     fun setup() {
         testConnector = TestConnector()
         mockMissionClock = mockk()
-        vescBuffer = ConcurrentLinkedDeque()
-        imuBuffer = ConcurrentLinkedDeque()
+        vescBuffer = VescStateBuffer()
+        imuBuffer = VescImuBuffer()
         testDispatcher = StandardTestDispatcher()
 
         dataCollector = VESCAndIMUDataCollector(
@@ -116,8 +113,8 @@ class VESCAndIMUDataCollectorTest {
         assertTrue(vescBuffer.isNotEmpty())
         assertTrue(imuBuffer.isNotEmpty())
 
-        assertEquals(timestamp, vescBuffer.first().second)
-        assertEquals(timestamp, imuBuffer.first().second)
+        assertEquals(timestamp, vescBuffer.first.timestamp_ms)
+        assertEquals(timestamp, imuBuffer.first.timestamp_ms)
     }
 
     @Test
