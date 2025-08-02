@@ -6,7 +6,8 @@ import io.mockk.verify
 import net.bobacktech.bionicboarder.vesc.fw6_00.FirmwareVersionResponse
 import net.bobacktech.bionicboarder.vesc.fw6_00.IMUStateReponse
 import net.bobacktech.bionicboarder.vesc.fw6_00.StateResponse
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
